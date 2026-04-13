@@ -1,0 +1,27 @@
+{
+  "name": "Axelerant Endurance Sports GTM",
+  "version": 2,
+  "public": true,
+  "buildCommand": "echo 'Static site - no build required'",
+  "outputDirectory": ".",
+  "framework": "static",
+  "env": {},
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ],
+  "headers": [
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    }
+  ]
+}

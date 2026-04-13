@@ -1,0 +1,19 @@
+{
+  "name": "axelerant-endurance-sports-gtm",
+  "version": "1.0.0",
+  "description": "GTM dashboard for Axelerant Endurance Sports targeting system",
+  "scripts": {
+    "dev": "python -m http.server 3000",
+    "build": "echo 'Static site - no build required'",
+    "start": "python -m http.server 3000"
+  },
+  "keywords": [
+    "gtm",
+    "endurance-sports",
+    "axelerant",
+    "targeting",
+    "dashboard"
+  ],
+  "author": "Axelerant Digital",
+  "license": "MIT"
+}
