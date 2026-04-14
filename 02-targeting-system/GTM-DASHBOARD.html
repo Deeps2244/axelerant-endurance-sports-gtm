@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endurance Sports GTM Engine (US) — Axelerant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --ax-orange: #FF5C00;
+  --ax-orange-light: #FF6B2B;
+  --ax-navy: #0D1B2A;
+  --ax-navy-dark: #111827;
+  --ax-white: #FFFFFF;
+  --ax-off-white: #F5F5F5;
+  --ax-slate: #4B5563;
+  --ax-cobalt: #1E3A8A;
+  --ax-teal: #0D9488;
+  --ax-green: #059669;
+  --ax-yellow: #D97706;
+  --ax-red: #DC2626;
+  --ax-font-heading: 'Inter', sans-serif;
+  --ax-font-display: 'Space Grotesk', sans-serif;
+  --ax-radius: 8px;
+  --ax-radius-lg: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ax-font-heading);
+  background: var(--ax-off-white);
+  color: var(--ax-navy);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--ax-navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 56px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+.nav-brand {
+  font-family: var(--ax-font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ax-orange);
+  letter-spacing: -0.3px;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover {
+  color: var(--ax-white);
+  background: rgba(255,92,0,0.15);
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  background: var(--ax-navy);
+  padding: 0;
+  max-width: 100%;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,92,0,0.12) 0%, transparent 70%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+}
+.hero-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 32px 80px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,92,0,0.15);
+  color: var(--ax-orange);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(255,92,0,0.3);
+}
+.hero h1 {
+  font-family: var(--ax-font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  color: var(--ax-white);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+.hero h1 span { color: var(--ax-orange); }
+.hero-sub {
+  font-size: 18px;
+  color: rgba(255,255,255,0.65);
+  max-width: 640px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+.hero-3lines {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--ax-radius-lg);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto 48px;
+}
+.hero-line {
+  background: rgba(255,255,255,0.04);
+  padding: 24px;
+  text-align: left;
+}
+.hero-line-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ax-orange);
+  margin-bottom: 8px;
+}
+.hero-line-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+.hero-scroll {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.hero-scroll::after {
+  content: '↓';
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)}
+}
+
+/* METRIC CARDS */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.metric-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px 24px;
+  border: 1px solid rgba(13,27,42,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.metric-num {
+  font-family: var(--ax-font-display);
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--ax-orange);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.metric-label {
+  font-size: 13px;
+  color: var(--ax-slate);
+  font-weight: 500;
+}
+.metric-sub {
+  font-size: 11px;
+  color: rgba(75,85,99,0.6);
+  margin-top: 4px;
+}
+
+/* SECTION STYLES */
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ax-orange);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--ax-font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--ax-navy);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.section-desc {
+  font-size: 16px;
+  color: var(--ax-slate);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+/* INSIGHT SECTION */
+#insight {
+  background: var(--ax-navy);
+  max-width: 100%;
+  padding: 80px 32px;
+}
+#insight-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#insight .section-title { color: var(--ax-white); }
+#insight .section-tag { color: var(--ax-orange); }
+.insight-quote {
+  font-family: var(--ax-font-display);
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--ax-white);
+  line-height: 1.2;
+  margin: 32px 0;
+  padding-left: 24px;
+  border-left: 4px solid var(--ax-orange);
+}
+.insight-quote span { color: var(--ax-orange); }
+.insight-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.insight-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px;
+}
+.insight-card-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.insight-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ax-white);
+  margin-bottom: 8px;
+}
+.insight-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+/* GTM ENGINE */
+.engine-steps {
+  display: flex;
+  gap: 0;
+  margin-top: 40px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.engine-step {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  position: relative;
+}
+.engine-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  right: -1px;
+  width: 2px;
+  height: 24px;
+  background: var(--ax-off-white);
+}
+.engine-step-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ax-navy);
+  color: var(--ax-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--ax-off-white), 0 0 0 4px var(--ax-navy);
+}
+.engine-connector {
+  position: absolute;
+  top: 28px;
+  left: calc(50% + 28px);
+  right: calc(-50% + 28px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--ax-navy), rgba(13,27,42,0.2));
+}
+.engine-step-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--ax-orange);
+  margin-bottom: 4px;
+}
+.engine-step h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ax-navy);
+  margin-bottom: 4px;
+}
+.engine-step p {
+  font-size: 11px;
+  color: var(--ax-slate);
+  padding: 0 8px;
+}
+.engine-step.done .engine-step-icon {
+  background: var(--ax-orange);
+  color: white;
+}
+.engine-step.done h4::after {
+  content: ' ✓';
+  color: var(--ax-green);
+}
+
+/* DIFFERENTIATION */
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.diff-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px;
+  border: 1px solid rgba(13,27,42,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-top: 3px solid var(--ax-orange);
+}
+.diff-vs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.diff-vs span:first-child {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(75,85,99,0.5);
+  text-decoration: line-through;
+}
+.diff-vs span:last-child {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ax-orange);
+}
+.diff-card h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ax-navy);
+  margin-bottom: 8px;
+}
+.diff-card p {
+  font-size: 14px;
+  color: var(--ax-slate);
+  line-height: 1.6;
+}
+
+/* ACCOUNT SCORECARD */
+.scorecard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.scorecard-table th {
+  background: var(--ax-navy);
+  color: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  text-align: left;
+}
+.scorecard-table td {
+  padding: 0;
+  border-bottom: 1px solid rgba(13,27,42,0.06);
+  vertical-align: top;
+}
+.scorecard-row-main {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.scorecard-row-main:hover { background: rgba(255,92,0,0.04); }
+.scorecard-row-main td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+.scorecard-expand {
+  display: none;
+  background: rgba(13,27,42,0.02);
+}
+.scorecard-expand.open { display: table-row; }
+.scorecard-expand td { padding: 20px 24px; }
+.expand-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.expand-block h5 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ax-orange);
+  margin-bottom: 8px;
+}
+.expand-block p, .expand-block ul {
+  font-size: 13px;
+  color: var(--ax-slate);
+  line-height: 1.6;
+}
+.expand-block ul { padding-left: 16px; }
+.expand-block ul li { margin-bottom: 4px; }
+
+.account-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ax-navy);
+}
+.account-revenue {
+  font-size: 12px;
+  color: var(--ax-slate);
+  margin-top: 2px;
+}
+.score-total {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 14px;
+  color: white;
+}
+.score-10 { background: #059669; }
+.score-9  { background: #16a34a; }
+.score-8  { background: #65a30d; }
+.score-7  { background: #ca8a04; }
+.score-6  { background: #d97706; }
+.score-5  { background: #dc2626; }
+
+.tier-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+}
+.tier-1 { background: rgba(220,38,38,0.1); color: #dc2626; border: 1px solid rgba(220,38,38,0.2); }
+.tier-2 { background: rgba(234,88,12,0.1); color: #ea580c; border: 1px solid rgba(234,88,12,0.2); }
+.tier-3 { background: rgba(161,98,7,0.1); color: #a16207; border: 1px solid rgba(161,98,7,0.2); }
+
+.dim-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.dim-bar-wrap {
+  display: flex;
+  gap: 3px;
+}
+.dim-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: rgba(13,27,42,0.1);
+}
+.dim-dot.fill { background: var(--ax-orange); }
+.dim-dot.fill-max { background: #059669; }
+.dim-label { font-size: 10px; color: var(--ax-slate); }
+
+.signal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255,92,0,0.1);
+  color: var(--ax-orange);
+}
+.expand-toggle {
+  color: var(--ax-slate);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.expand-toggle .chevron { transition: transform 0.2s; }
+.expand-toggle.open .chevron { transform: rotate(180deg); }
+
+/* CHARTS SECTION */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+@media (max-width: 700px) { .charts-grid { grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px;
+  border: 1px solid rgba(13,27,42,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.chart-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ax-navy);
+  margin-bottom: 4px;
+}
+.chart-card p {
+  font-size: 12px;
+  color: var(--ax-slate);
+  margin-bottom: 20px;
+}
+
+/* PAIN AREAS */
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.pain-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 24px;
+  border: 1px solid rgba(13,27,42,0.06);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.pain-count {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ax-radius);
+  background: var(--ax-navy);
+  color: var(--ax-orange);
+  font-family: var(--ax-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pain-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ax-navy);
+  margin-bottom: 4px;
+}
+.pain-card p {
+  font-size: 13px;
+  color: var(--ax-slate);
+  line-height: 1.5;
+}
+.pain-bar {
+  height: 4px;
+  background: rgba(13,27,42,0.08);
+  border-radius: 2px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.pain-bar-fill {
+  height: 100%;
+  background: var(--ax-orange);
+  border-radius: 2px;
+}
+
+/* CAMPAIGNS */
+.campaign-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.campaign-tab {
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(13,27,42,0.15);
+  background: var(--ax-white);
+  color: var(--ax-slate);
+  transition: all 0.2s;
+}
+.campaign-tab.active {
+  background: var(--ax-orange);
+  color: white;
+  border-color: var(--ax-orange);
+}
+.campaign-panels { margin-top: 20px; }
+.campaign-panel { display: none; }
+.campaign-panel.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.ad-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(13,27,42,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.ad-header {
+  background: var(--ax-navy);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ad-channel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ax-orange);
+}
+.ad-target {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+}
+.ad-body { padding: 20px; }
+.ad-headline {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ax-navy);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.ad-copy {
+  font-size: 13px;
+  color: var(--ax-slate);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.ad-cta {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ax-orange);
+  border: 1px solid var(--ax-orange);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* WHY NOW */
+.why-now-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.why-now-card {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px;
+  border: 1px solid rgba(13,27,42,0.06);
+}
+.why-now-card .icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.why-now-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ax-navy);
+  margin-bottom: 8px;
+}
+.why-now-card p {
+  font-size: 14px;
+  color: var(--ax-slate);
+  line-height: 1.6;
+}
+.why-now-stat {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--ax-font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ax-orange);
+}
+
+/* TIMELINE */
+.timeline {
+  margin-top: 40px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(13,27,42,0.1);
+}
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.timeline-dot {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 1;
+}
+.timeline-dot.done { background: var(--ax-orange); color: white; }
+.timeline-dot.next { background: var(--ax-navy); color: var(--ax-orange); border: 2px solid var(--ax-orange); }
+.timeline-dot.future { background: var(--ax-white); color: var(--ax-slate); border: 2px solid rgba(13,27,42,0.15); }
+.timeline-content {
+  background: var(--ax-white);
+  border-radius: var(--ax-radius-lg);
+  padding: 20px 24px;
+  flex: 1;
+  border: 1px solid rgba(13,27,42,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.timeline-content.done { border-left: 3px solid var(--ax-green); }
+.timeline-content.next { border-left: 3px solid var(--ax-orange); }
+.timeline-week {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ax-orange);
+  margin-bottom: 4px;
+}
+.timeline-content h4 { font-size: 16px; font-weight: 700; color: var(--ax-navy); margin-bottom: 8px; }
+.timeline-content p { font-size: 14px; color: var(--ax-slate); }
+.timeline-tasks {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.task-chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(13,27,42,0.05);
+  color: var(--ax-slate);
+  font-weight: 500;
+}
+.task-chip.done-chip { background: rgba(5,150,105,0.1); color: var(--ax-green); }
+.task-chip.next-chip { background: rgba(255,92,0,0.1); color: var(--ax-orange); }
+
+/* CLOSING */
+#close {
+  background: var(--ax-navy);
+  max-width: 100%;
+  padding: 80px 32px;
+}
+#close-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#close .section-title { color: var(--ax-white); }
+#close .section-tag { color: var(--ax-orange); }
+#close .section-desc { color: rgba(255,255,255,0.6); }
+.close-accounts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+.close-account {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--ax-radius);
+  padding: 16px;
+}
+.close-account-num {
+  font-family: var(--ax-font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ax-orange);
+  margin-bottom: 4px;
+}
+.close-account-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+.close-account-why {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+.close-action {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--ax-radius-lg);
+  padding: 28px;
+  margin-top: 32px;
+}
+.close-action h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+}
+.close-action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.action-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,92,0,0.15);
+  border: 1px solid rgba(255,92,0,0.25);
+  padding: 10px 16px;
+  border-radius: var(--ax-radius);
+}
+.action-chip-num {
+  font-family: var(--ax-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ax-orange);
+  flex-shrink: 0;
+}
+.action-chip-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+}
+.conviction-block {
+  margin-top: 48px;
+  padding: 32px;
+  background: var(--ax-orange);
+  border-radius: var(--ax-radius-lg);
+  text-align: center;
+}
+.conviction-block p {
+  font-family: var(--ax-font-display);
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+}
+.conviction-block .sub {
+  font-family: var(--ax-font-heading);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  margin-top: 12px;
+}
+
+/* FOOTER */
+footer {
+  background: #07111c;
+  text-align: center;
+  padding: 24px 32px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+footer span { color: var(--ax-orange); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  .hero-3lines { grid-template-columns: 1fr; }
+  .charts-grid { grid-template-columns: 1fr; }
+  .expand-grid { grid-template-columns: 1fr; }
+  .engine-steps { gap: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Axelerant</div>
+  <ul class="nav-links">
+    <li><a href="#snapshot">Snapshot</a></li>
+    <li><a href="#insight">Core Insight</a></li>
+    <li><a href="#system">GTM Engine</a></li>
+    <li><a href="#diff">Why We Win</a></li>
+    <li><a href="#scorecard">Account Scorecard</a></li>
+    <li><a href="#signals">Signal Analysis</a></li>
+    <li><a href="#pain">Pain Mapping</a></li>
+    <li><a href="#multichannel">Channel Strategy</a></li>
+    <li><a href="#campaigns">Campaigns</a></li>
+    <li><a href="#timing">Why Now</a></li>
+    <li><a href="#timeline">Execution</a></li>
+    <li><a href="#metrics">Success Metrics</a></li>
+    <li><a href="#risks">Risk Register</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">US Sports Endurance Vertical · April 2026</div>
+    <h1>Endurance Sports<br><span>GTM Engine</span> (US)<br>From Targeting to Conversion</h1>
+    <p class="hero-sub">Signal-based targeting for US endurance sports operators. Use this to decide who to call, what to say, and when — based on live buying signals, not static lists.</p>
+    <div class="hero-3lines">
+      <div class="hero-line">
+        <div class="hero-line-label">The Opportunity</div>
+        <div class="hero-line-text">$49M–$350M TAM of endurance operators under transformation pressure from M&A, platform migrations, and sponsor demands.</div>
+      </div>
+      <div class="hero-line">
+        <div class="hero-line-label">Where We Are</div>
+        <div class="hero-line-text">Steps 1–3 complete: 22 accounts sourced, 10 qualified, 8 decision-makers named, 4 message variations ready. Outreach launches this week.</div>
+      </div>
+      <div class="hero-line">
+        <div class="hero-line-label">What's Next</div>
+        <div class="hero-line-text">Steps 4–6: content assets, multi-channel launch, 3–7 discovery calls within 30 days.</div>
+      </div>
+    </div>
+    <div class="hero-scroll">Explore the system</div>
+  </div>
+</div>
+
+<!-- SNAPSHOT -->
+<section id="snapshot">
+  <div class="section-tag">Executive Snapshot</div>
+  <div class="section-title">The Numbers That Matter</div>
+  <p class="section-desc">Each metric is a decision gate. 22 sourced tells you the pool is right. 10 qualified tells you the approach is working. 8 DMs named tells you outreach can start today.</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-num">22</div>
+      <div class="metric-label">Accounts Sourced</div>
+      <div class="metric-sub">Signal-first discovery</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">10</div>
+      <div class="metric-label">Accounts Qualified</div>
+      <div class="metric-sub">Score ≥ 6/10</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">8</div>
+      <div class="metric-label">Decision-Makers Named</div>
+      <div class="metric-sub">Tier 1 + 2 confirmed</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">4</div>
+      <div class="metric-label">Message Buckets</div>
+      <div class="metric-sub">Pain-matched campaigns</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">3–7</div>
+      <div class="metric-label">Discovery Calls</div>
+      <div class="metric-sub">Target within 45 days</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">$75K</div>
+      <div class="metric-label">Minimum Deal Size</div>
+      <div class="metric-sub">Up to $400K initial</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICATION RATE CALLOUT -->
+<section id="qual-rate" style="background: #fff; padding: 64px 32px; max-width: 100%;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-tag">Why These Numbers Are Different</div>
+    <div class="section-title">45% Qualification Rate — Top Band Signal-Based Targeting</div>
+    <p class="section-desc" style="margin-bottom: 40px;">High-quality sourcing + strong signal detection + targeting companies in motion produces a fundamentally different pool than standard ICP lists.</p>
+
+    <!-- Cause → Effect row -->
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; align-items: stretch;">
+      <!-- Inputs -->
+      <div style="flex: 1; min-width: 220px; background: var(--ax-off-white); border-radius: 12px; padding: 28px 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--ax-orange); text-transform: uppercase; margin-bottom: 14px;">What We Did</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ax-navy); font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>High-quality sourcing
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ax-navy); font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>Strong signal detection
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ax-navy); font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>Companies in motion
+          </li>
+        </ul>
+      </div>
+
+      <!-- Arrow -->
+      <div style="display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--ax-orange); flex-shrink: 0; min-width: 40px;">→</div>
+
+      <!-- Outputs -->
+      <div style="flex: 1; min-width: 220px; background: var(--ax-navy); border-radius: 12px; padding: 28px 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--ax-orange); text-transform: uppercase; margin-bottom: 14px;">What It Produces</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #fff; font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>Smaller pool
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #fff; font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>Higher intent
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px; font-size: 15px; color: #fff; font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--ax-orange); flex-shrink: 0;"></span>Better conversion
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- The stat + benchmark row -->
+    <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: stretch;">
+      <!-- Main stat -->
+      <div style="flex: 1; min-width: 200px; background: var(--ax-orange); border-radius: 12px; padding: 32px 28px; text-align: center;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; margin-bottom: 8px;">22 Accounts Sourced → 10 Qualified</div>
+        <div style="font-size: 60px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 6px;">~45%</div>
+        <div style="font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.9);">Qualification Rate</div>
+      </div>
+
+      <!-- Benchmark table -->
+      <div style="flex: 2; min-width: 260px; background: var(--ax-off-white); border-radius: 12px; padding: 28px 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--ax-orange); text-transform: uppercase; margin-bottom: 18px;">Industry Benchmark</div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #fff; border-radius: 8px; border-left: 3px solid #d1d5db;">
+            <span style="font-size: 14px; color: var(--ax-slate);">Typical B2B Targeting</span>
+            <span style="font-size: 14px; font-weight: 700; color: var(--ax-slate);">10–20%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #fff; border-radius: 8px; border-left: 3px solid #6b7280;">
+            <span style="font-size: 14px; color: var(--ax-slate);">Good ABM</span>
+            <span style="font-size: 14px; font-weight: 700; color: var(--ax-slate);">20–30%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,92,0,0.06); border-radius: 8px; border-left: 3px solid var(--ax-orange);">
+            <span style="font-size: 14px; color: var(--ax-navy); font-weight: 600;">Signal-Based <span style="font-size: 11px; background: var(--ax-orange); color: #fff; padding: 2px 6px; border-radius: 4px; margin-left: 6px; font-weight: 700;">YOU ARE HERE</span></span>
+            <span style="font-size: 14px; font-weight: 700; color: var(--ax-orange);">30–50%</span>
+          </div>
+        </div>
+        <div style="margin-top: 16px; padding: 12px 14px; background: var(--ax-navy); border-radius: 8px; font-size: 13px; color: #fff; font-weight: 600; text-align: center;">
+          👉 Already in the top band
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT -->
+<div id="insight">
+  <div id="insight-inner">
+    <div class="section-tag">The Core Insight</div>
+    <div class="section-title" style="color:white">Where Most Targeting Fails</div>
+    <div class="insight-quote">
+      We don't target companies.<br>We target <span>companies in motion</span>.
+    </div>
+    <div class="insight-cards">
+      <div class="insight-card">
+        <div class="insight-card-icon">📡</div>
+        <h4>ICP is Table Stakes</h4>
+        <p>Revenue ranges, headcount, event count — every competitor filters on these. They produce the same list. The real edge is <strong>behavioral signals</strong>: M&A activity, platform migrations, CTO hires, registration outages. That's the filter no one else is running.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-card-icon">⏱️</div>
+        <h4>Urgency Is the Moat</h4>
+        <p>Reaching an operator 18 months before their pain peaks is wasted spend. Reaching them at the inflection point — post-migration, post-acquisition — is when they buy.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-card-icon">🏆</div>
+        <h4>Ironman Proves the Model</h4>
+        <p>Axelerant has already solved this at scale: 170+ events, 70% load reduction, +44% athlete engagement. We're not selling theory. We're selling a proven playbook.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GTM SYSTEM -->
+<section id="system">
+  <div class="section-tag">The System</div>
+  <div class="section-title">6-Step GTM Engine</div>
+  <p class="section-desc">A repeatable, end-to-end system — not a one-time campaign. Steps 1 and 2 are complete. Steps 3–6 are sequenced and ready.</p>
+  <div class="engine-steps">
+    <div class="engine-step done">
+      <div class="engine-step-icon">🎯</div>
+      <div class="engine-step-num">STEP 1 · DONE</div>
+      <h4>ICP + List Build</h4>
+      <p>22 signal-sourced accounts across US endurance market</p>
+    </div>
+    <div class="engine-step done">
+      <div class="engine-step-icon">🔬</div>
+      <div class="engine-step-num">STEP 2 · DONE</div>
+      <h4>Qualification Engine</h4>
+      <p>5-lens scoring, 10 qualified, 8 DMs named</p>
+    </div>
+    <div class="engine-step done">
+      <div class="engine-step-icon">✍️</div>
+      <div class="engine-step-num">STEP 3 · DONE</div>
+      <h4>Message Positioning</h4>
+      <p>5 pain-matched variations, channel-specific copy, Rory Sutherland reframes</p>
+    </div>
+    <div class="engine-step">
+      <div class="engine-step-icon">🎨</div>
+      <div class="engine-step-num">STEP 4</div>
+      <h4>Content & Assets</h4>
+      <p>LinkedIn ads, landing page, case study, webinar</p>
+    </div>
+    <div class="engine-step">
+      <div class="engine-step-icon">🚀</div>
+      <div class="engine-step-num">STEP 5</div>
+      <h4>Multi-Channel Launch</h4>
+      <p>LinkedIn · Google · Reddit · Newsletters</p>
+    </div>
+    <div class="engine-step">
+      <div class="engine-step-icon">📞</div>
+      <div class="engine-step-num">STEP 6</div>
+      <h4>Discovery Calls</h4>
+      <p>3–7 diagnostic calls. Pipeline begins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATION -->
+<section id="diff" style="background: var(--ax-off-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Why This Approach Wins</div>
+    <div class="section-title">Four Dimensions That Close Deals Faster</div>
+    <p class="section-desc">Each dimension does a specific job: reduce time-to-engagement, increase message relevance, shorten the sales cycle, lower perceived risk. Together they compound.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-vs"><span>Static lists</span> <span>→ Signal-based targeting</span></div>
+        <h4>Behavioral Urgency</h4>
+        <p>Every account is in the system because of a specific, observable signal — M&A activity, platform migration, CTO hire, registration outage. Not because they fit a revenue bracket.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-vs"><span>Generic timing</span> <span>→ Urgency-based sequencing</span></div>
+        <h4>Right Moment</h4>
+        <p><strong>Supertri Example:</strong> Acquired 3 new properties in 2025 (Toronto, Blenheim, NJ State) + announced unified festival model launching 2026 with 30,000 athletes. Integration work is happening NOW. This is peak urgency: budget is committed, transformation is active. <strong>This is when we reach out.</strong></p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-vs"><span>Broad messaging</span> <span>→ Persona-trigger mapping</span></div>
+        <h4>Pain-Matched Campaigns</h4>
+        <p>4 message buckets built around specific pain triggers: Race Day Reliability, Integration Architecture, M&A Integration Playbook, Athlete Experience &amp; Retention. Each bucket uses a Rory Sutherland cognitive reframe + proof from Ironman.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-vs"><span>Theoretical claims</span> <span>→ Ironman-backed proof</span></div>
+        <h4>Proven at Scale</h4>
+        <p>The IRONMAN Group reference is not a logo on a slide. It's operational proof: 170+ events, unified data platform, solved exactly the problems these 10 accounts face today.</p>
+      </div>
+    </div>
+
+    <!-- WHY AXELERANT? -->
+    <div style="margin-top:80px; background:var(--ax-navy); border-radius:12px; padding:48px; color:white;">
+      <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:24px;">🎯 Why Axelerant Wins This Deal</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:32px;">
+
+        <div>
+          <div style="font-size:14px; font-weight:700; color:white; margin-bottom:12px;">⚡ Speed to Value</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+            <p style="margin:0 0 8px 0;">We've done this 5 times (Ironman 5-brand integration, plus case studies in progress). Prospects need answers in 60 days, not 6 months. Our playbook = months of strategy compressed into weeks.</p>
+            <p style="margin:0; font-size:11px; color:rgba(255,255,255,0.6);"><em>Supertri: Can you integrate 3 new properties + unify 30K athletes by next festival season? Yes. Here's exactly how.</em></p>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:14px; font-weight:700; color:white; margin-bottom:12px;">🏆 Domain Expertise</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+            <p style="margin:0 0 8px 0;">We speak "endurance events" not "generic SaaS." Pain diagnosis is precise (not generic Salesforce template). Decision-makers trust us because we've been in their seat.</p>
+            <p style="margin:0; font-size:11px; color:rgba(255,255,255,0.6);"><em>Atlanta Track Club: We get that Strava integration doesn't work with your custom registration flow. Here's the fix.</em></p>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:14px; font-weight:700; color:white; margin-bottom:12px;">🔄 Proven Architecture</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+            <p style="margin:0 0 8px 0;">Ironman case study isn't "we have enterprise experience." It's "we have the exact playbook your next 3 acquisitions need." Replicability = lower perceived risk for buyers.</p>
+            <p style="margin:0; font-size:11px; color:rgba(255,255,255,0.6);"><em>Marathon Sports: Your 2 acquisitions need the same unified platform. We've done this twice at Ironman.</em></p>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:14px; font-weight:700; color:white; margin-bottom:12px;">💰 Fixed Cost Model</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+            <p style="margin:0 0 8px 0;">Platform costs scale with complexity. We negotiate fixed project scope ($75K–$400K). Buyer has budget certainty (vs. variable platform spend that creeps).</p>
+            <p style="margin:0; font-size:11px; color:rgba(255,255,255,0.6);"><em>Houston Marathon: Your integration = $150K project, 4-month timeline, no surprises.</em></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ICP DEFINITION -->
+<section id="icp" style="background: var(--ax-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Who We Target</div>
+    <div class="section-title">Ideal Customer Profile (ICP)</div>
+    <p class="section-desc">The 10 accounts in this dashboard all match this profile. Expand below to understand firmographics, decision-makers, pain points, and buying signals.</p>
+
+    <!-- ICP DEFINITION (EXPANDABLE) -->
+    <details style="background:white; border:1px solid rgba(13,27,42,0.08); border-radius:12px; padding:32px; margin-bottom:40px; cursor:pointer;">
+      <summary style="font-weight:700; color:var(--ax-navy); font-size:16px; display:flex; align-items:center; gap:12px; user-select:none;">
+        <span style="font-size:20px;">👥</span> Complete ICP Definition — Click to Expand
+      </summary>
+
+      <div style="margin-top:32px; padding-top:32px; border-top:1px solid rgba(13,27,42,0.06);">
+
+        <!-- FIRMOGRAPHICS -->
+        <div style="margin-bottom:40px;">
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">📊 Firmographics</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:16px;">
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">💰 Annual Revenue</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">$2M–$15M</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;"><strong>Sweet spot:</strong> $5M–$10M</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">👥 Team Size</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">2–8 FTE</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;">1 CEO, 1 CTO/Ops, 1 Marketing, 1–5 Event staff</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">🏃 Participants Annual</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">5K–25K</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;">Across 3–12 events</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">🌍 Organization</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">Independent Operator</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;">Not franchised; 3+ years operating</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">🌐 Geography</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">Global Focus</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;">US, Canada, EU primary</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:16px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">🎯 Event Type</div>
+              <div style="font-size:13px; color:var(--ax-navy); font-weight:600;">Endurance-Focused</div>
+              <div style="font-size:11px; color:var(--ax-slate); margin-top:4px;">Marathons, triathlons, obstacle courses, trail running</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REVENUE STREAMS & BUSINESS MODEL -->
+        <div style="margin-bottom:40px;">
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">💼 Business Model</h3>
+          <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:20px; margin-bottom:16px;">
+            <div style="font-size:12px; color:var(--ax-navy); line-height:1.8;">
+              <p style="margin:0 0 12px 0;"><strong>Revenue Streams:</strong> Registration (40–50%), Sponsorship (20–30%), Merchandise (10–15%), Post-race services (10–15%)</p>
+              <p style="margin:0 0 12px 0;"><strong>Margin Pressure:</strong> Platform fees eat 6–12% of registration revenue + $2–5 transaction fees per registration</p>
+              <p style="margin:0 0 12px 0;"><strong>Tech Maturity:</strong> Low — non-technical founder is common, IT person is overextended</p>
+              <p style="margin:0;"><strong>Ambition:</strong> Grow repeat athlete base, increase sponsor value, improve margins</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRIMARY PAIN POINTS -->
+        <div style="margin-bottom:40px;">
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">⚡ Primary Pain Points (Business Impact)</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">System Fragmentation</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">6+ disconnected systems, no unified athlete view. <strong>Loss:</strong> 3x LTV gap (first-timer vs. returning)</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">Scale Failures</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">Registration outages on event day, manual workarounds. <strong>Loss:</strong> Revenue + brand damage + liability</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">Data Failure</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">Sponsor contracts based on guesses. <strong>Loss:</strong> Weak sponsorship negotiating position</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">Athlete Experience Gaps</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">Generic post-race emails, no Strava integration. <strong>Loss:</strong> –20–30% repeat registration vs. competitors</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">Manual Operations</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">Everything tracked in spreadsheets. <strong>Loss:</strong> Staff burnout, high turnover, errors</div>
+            </div>
+            <div style="background:rgba(220,38,38,0.06); border-radius:8px; padding:14px; border-left:3px solid #dc2626;">
+              <div style="font-size:11px; font-weight:700; color:#dc2626; text-transform:uppercase; margin-bottom:6px;">Commerce Missed</div>
+              <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">No lifecycle-based merchandising. <strong>Loss:</strong> Untapped post-race revenue</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding:16px; background:rgba(220,38,38,0.08); border-radius:8px; border-left:3px solid #dc2626;">
+            <div style="font-size:12px; font-weight:700; color:var(--ax-navy); margin-bottom:6px;">💰 Total Business Impact</div>
+            <div style="font-size:12px; color:var(--ax-navy);">Average operator leaves <strong>$500K–$2M in annual revenue opportunity</strong> on the table</div>
+          </div>
+        </div>
+
+        <!-- DECISION-MAKING UNIT -->
+        <div style="margin-bottom:40px;">
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🎯 Decision-Making Unit (DMU)</h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:14px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">🎯 Primary Decision-Maker</div>
+              <div style="font-size:12px; color:var(--ax-navy); font-weight:600; margin-bottom:4px;">VP Technology / Director of Operations</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;"><strong>Goal:</strong> Reliable systems, cost control<br><strong>Fear:</strong> Budget overruns, implementation failure<br><strong>Metric:</strong> 99.9% uptime, cost/participant ↓</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:14px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">👥 Influencer 1</div>
+              <div style="font-size:12px; color:var(--ax-navy); font-weight:600; margin-bottom:4px;">Event Director / Head of Ops</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;"><strong>Goal:</strong> Zero registration day issues<br><strong>Fear:</strong> Outages, data loss<br><strong>Metric:</strong> Strava integration, post-race experience</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:14px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">👥 Influencer 2</div>
+              <div style="font-size:12px; color:var(--ax-navy); font-weight:600; margin-bottom:4px;">Sponsorship/Marketing Manager</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;"><strong>Goal:</strong> Sponsor satisfaction, verified data<br><strong>Fear:</strong> Non-renewal<br><strong>Metric:</strong> Real-time ROI reporting</div>
+            </div>
+            <div style="background:rgba(13,27,42,0.04); border-radius:8px; padding:14px;">
+              <div style="font-size:11px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">✓ Evaluator</div>
+              <div style="font-size:12px; color:var(--ax-navy); font-weight:600; margin-bottom:4px;">CFO / Finance</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;"><strong>Goal:</strong> Controllable costs, transparency<br><strong>Fear:</strong> Hidden costs, lock-in<br><strong>Metric:</strong> Measurable ROI, flexibility</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUYING SIGNALS -->
+        <div style="margin-bottom:40px;">
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🚨 Buying Signals (Triggers)</h3>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px; font-weight:700; color:var(--ax-navy); margin-bottom:8px;">HIGH-INTENT (Immediate Action):</div>
+            <div style="font-size:11px; color:var(--ax-slate); line-height:1.7;">
+              ✓ Registration platform went down during registration window<br>
+              ✓ Just acquired/merged, tech stacks don't match<br>
+              ✓ Sponsors demanding verified audience data we don't have<br>
+              ✓ Losing repeat registrations to competitors with Strava integration<br>
+              ✓ Development team just quit, can't maintain custom system
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px; font-weight:700; color:var(--ax-navy); margin-bottom:8px;">MEDIUM-INTENT (3–6 Month Window):</div>
+            <div style="font-size:11px; color:var(--ax-slate); line-height:1.7;">
+              ✓ Hiring Director of Technology<br>
+              ✓ Sponsorship contracts being renegotiated<br>
+              ✓ Planning expansion to new markets<br>
+              ✓ Athletes asking why we're not on Strava<br>
+              ✓ Current platform doesn't support features competitors have
+            </div>
+          </div>
+        </div>
+
+        <!-- DEAL SIZE & BUDGET -->
+        <div>
+          <h3 style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">💵 Deal Size & Budget Availability</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div style="background:rgba(59,130,246,0.06); border-radius:8px; padding:16px; border-left:3px solid #3b82f6;">
+              <div style="font-size:11px; font-weight:700; color:#3b82f6; text-transform:uppercase; margin-bottom:8px;">Initial Engagement</div>
+              <div style="font-size:13px; font-weight:600; color:var(--ax-navy); margin-bottom:4px;">$75K–$400K</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;">Typical: $150K–$250K for Tier 2 regional operator. Timeline: 4–6 months Phase 1 completion.</div>
+            </div>
+            <div style="background:rgba(59,130,246,0.06); border-radius:8px; padding:16px; border-left:3px solid #3b82f6;">
+              <div style="font-size:11px; font-weight:700; color:#3b82f6; text-transform:uppercase; margin-bottom:8px;">Multi-Year Program</div>
+              <div style="font-size:13px; font-weight:600; color:var(--ax-navy); margin-bottom:4px;">$400K–$1.2M</div>
+              <div style="font-size:10px; color:var(--ax-slate); line-height:1.6;">Full 4-phase transformation: Connect, Activate, Optimize, Scale</div>
+            </div>
+          </div>
+          <div style="margin-top:16px; padding:14px; background:rgba(59,130,246,0.06); border-radius:8px; border-left:3px solid #3b82f6;">
+            <div style="font-size:11px; font-weight:700; color:var(--ax-navy); margin-bottom:6px;">Budget Availability:</div>
+            <div style="font-size:11px; color:var(--ax-slate); line-height:1.6;">Most operators have approved budget for vendor migration (tech debt). Additional budget available if ROI proven. Typical funding: Board/investor decision (6-month approval window)</div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px; padding-top:32px; border-top:1px solid rgba(13,27,42,0.06); text-align:right;">
+          <button onclick="this.closest('details').removeAttribute('open')" style="background:#FF5C00; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:background 0.2s;">Close Section</button>
+        </div>
+
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- BUYING COMMITTEE STRATEGY -->
+<section id="buying-committee" style="background: var(--ax-navy); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag" style="color:var(--ax-orange);">Buying Committee Strategy</div>
+    <div class="section-title" style="color:white;">Multi-Persona Sales Motion</div>
+    <p class="section-desc" style="color:rgba(255,255,255,0.7);">Every deal involves 4–5 stakeholders with different motivations. We message each one differently. Here's how.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-top:48px;">
+
+      <!-- VP Ops / CTO -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px;">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:12px;">⚙️ VP Technology / Operations</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Role:</strong> Budget holder, technical evaluator, final approval</p>
+          <p style="margin:0 0 8px 0;"><strong>Motivation:</strong> Reduce ops headaches, scale without hiring</p>
+          <p style="margin:0 0 8px 0;"><strong>Fear:</strong> Long implementation = delayed ROI, team distraction</p>
+          <p style="margin:0 0 8px 0;"><strong>Success Metric:</strong> "Handles 2x participants without downtime"</p>
+          <p style="margin:0;"><strong>Our Message:</strong> Operational relief + scale confidence (from Ironman proof)</p>
+        </div>
+      </div>
+
+      <!-- Event Director -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px;">
+        <div style="font-size:13px; font-weight:700; color:#a78bfa; text-transform:uppercase; margin-bottom:12px;">🏃 Event Director / Marketing</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Role:</strong> Daily user, pain validator, internal influencer</p>
+          <p style="margin:0 0 8px 0;"><strong>Motivation:</strong> Better athlete experience, easier logistics</p>
+          <p style="margin:0 0 8px 0;"><strong>Fear:</strong> "Athletes hate change. We'll lose registrations."</p>
+          <p style="margin:0 0 8px 0;"><strong>Success Metric:</strong> "Athlete NPS improves, fewer manual processes"</p>
+          <p style="margin:0;"><strong>Our Message:</strong> Athlete loyalty + operational ease (from Strava integration proof)</p>
+        </div>
+      </div>
+
+      <!-- Sponsorship Manager -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px;">
+        <div style="font-size:13px; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:12px;">💰 Revenue / Sponsorship Manager</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Role:</strong> Monetization lens, budget gatekeeper</p>
+          <p style="margin:0 0 8px 0;"><strong>Motivation:</strong> Unlock untapped sponsor revenue</p>
+          <p style="margin:0 0 8px 0;"><strong>Fear:</strong> "We'll lose sponsor relationships during migration"</p>
+          <p style="margin:0 0 8px 0;"><strong>Success Metric:</strong> "Sponsor commission revenue +15% in Year 2"</p>
+          <p style="margin:0;"><strong>Our Message:</strong> Revenue unlock + sponsor satisfaction (from Ironman sponsor ROI data)</p>
+        </div>
+      </div>
+
+      <!-- CFO -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px;">
+        <div style="font-size:13px; font-weight:700; color:#34d399; text-transform:uppercase; margin-bottom:12px;">📊 CFO / Finance Director</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Role:</strong> Budget approval, cost-benefit evaluation</p>
+          <p style="margin:0 0 8px 0;"><strong>Motivation:</strong> Minimize cost impact, maximize ROI clarity</p>
+          <p style="margin:0 0 8px 0;"><strong>Fear:</strong> "Hidden costs, scope creep, implementation delays"</p>
+          <p style="margin:0 0 8px 0;"><strong>Success Metric:</strong> "$X investment = $Y ARR in Year 1"</p>
+          <p style="margin:0;"><strong>Our Message:</strong> ROI model + fixed cost certainty (from deal structure clarity)</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- APPROVAL FLOW -->
+    <div style="margin-top:48px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:32px;">
+      <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:24px;">🎯 Typical Deal Approval Flow</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.8);">
+        <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:white;">1. Discovery Trigger</strong> — VP Ops/CTO identifies pain point (registration outage, M&A complexity, scaling wall)
+        </div>
+        <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:white;">2. Internal Alignment</strong> — VP Ops socializes with Event Director + CFO (operationally feasible? Financially justified?)
+        </div>
+        <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:white;">3. Confirmation</strong> — Event Director validates athlete experience problem, CFO reviews budget impact
+        </div>
+        <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:white;">4. Proposal & Negotiation</strong> — VP Ops requests formal proposals (usually 2–3 vendors), CFO leads evaluation
+        </div>
+        <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:white;">5. Committee Decision</strong> — Executive sponsor (CEO or Board for non-profits) approves scope + budget
+        </div>
+        <div>
+          <strong style="color:white;">6. Project Launch</strong> — Event Director becomes internal champion; VP Ops oversees execution; CFO tracks ROI
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAMPION ACTIVATION -->
+    <div style="margin-top:32px; background:rgba(255,92,0,0.1); border:1px solid rgba(255,92,0,0.2); border-radius:12px; padding:32px; border-left:4px solid var(--ax-orange);">
+      <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:16px;">🏆 How We Create Internal Advocates</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:24px; font-size:12px; color:rgba(255,255,255,0.8); line-height:1.8;">
+        <div>
+          <strong style="color:white;">Early Phase:</strong> Identify who's most motivated to fix the problem (usually Event Director or VP Ops). Make them our primary contact.
+        </div>
+        <div>
+          <strong style="color:white;">Middle Phase:</strong> Activate them as an internal advocate during vendor evaluation. They validate our fit to internal stakeholders.
+        </div>
+        <div>
+          <strong style="color:white;">Late Phase:</strong> Leverage them to unblock CFO concerns. They provide operational data that proves ROI case.
+        </div>
+        <div>
+          <strong style="color:white;">Post-Sale:</strong> Make them the project success owner. Their win is visible to the entire organization.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACCOUNT SCORECARD -->
+<section id="scorecard">
+  <div class="section-tag">Account Scorecard</div>
+  <div class="section-title">10 Qualified Accounts · 5-Lens Scoring</div>
+  <p class="section-desc">Click any row to expand full pain diagnosis, decision-maker details, and recommended campaign angle.</p>
+
+  <!-- SCORE CALCULATION METHODOLOGY (EXPANDABLE) -->
+  <details style="background:white; border:1px solid rgba(13,27,42,0.08); border-radius:12px; padding:24px; margin-bottom:32px; cursor:pointer;">
+    <summary style="font-weight:700; color:var(--ax-navy); font-size:15px; display:flex; align-items:center; gap:12px; user-select:none;">
+      <span style="font-size:18px;">📊</span> How Scoring Works — Expand to Learn
+    </summary>
+    <div style="margin-top:24px; padding-top:24px; border-top:1px solid rgba(13,27,42,0.06);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+
+        <!-- Revenue Fit -->
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">📈 Revenue Fit (Weight: 30%)</div>
+          <div style="font-size:12px; color:var(--ax-slate); line-height:1.7;">
+            <p style="margin:0 0 8px 0;"><strong>Scale:</strong> 1–3 dots</p>
+            <ul style="margin:0; padding-left:16px;">
+              <li><strong>3 dots:</strong> $5M–$15M annual revenue (sweet spot ICP)</li>
+              <li><strong>2 dots:</strong> $2M–$5M or $15M–$25M (wider range)</li>
+              <li><strong>1 dot:</strong> <$2M or >$25M (outside core ICP)</li>
+            </ul>
+            <p style="margin:8px 0 0 0; font-style:italic; color:rgba(75,85,99,0.7);">Why: Operators in the $5–15M range have transformation budget available and are still nimble enough to execute quickly.</p>
+          </div>
+        </div>
+
+        <!-- Signal Strength -->
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">⚡ Signal Strength (Weight: 35%)</div>
+          <div style="font-size:12px; color:var(--ax-slate); line-height:1.7;">
+            <p style="margin:0 0 8px 0;"><strong>Scale:</strong> 1–3 dots</p>
+            <ul style="margin:0; padding-left:16px;">
+              <li><strong>3 dots:</strong> M&A active (0–6 months), platform migration (0–12 months), registration outage confirmed</li>
+              <li><strong>2 dots:</strong> Tech hiring signal, funding round, business expansion announced</li>
+              <li><strong>1 dot:</strong> Historical signal (18+ months old), weak market indicators</li>
+            </ul>
+            <p style="margin:8px 0 0 0; font-style:italic; color:rgba(75,85,99,0.7);">Why: Urgency is the moat. Companies in active crisis (M&A, migration) are 5–10x more likely to buy than stable operators.</p>
+          </div>
+        </div>
+
+        <!-- Decision-Maker Clarity -->
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">👤 Decision-Maker Clarity (Weight: 20%)</div>
+          <div style="font-size:12px; color:var(--ax-slate); line-height:1.7;">
+            <p style="margin:0 0 8px 0;"><strong>Scale:</strong> 1–2 dots</p>
+            <ul style="margin:0; padding-left:16px;">
+              <li><strong>2 dots:</strong> Named VP Technology/Operations or CTO identified + confirmed contact</li>
+              <li><strong>1 dot:</strong> Role identified but contact unconfirmed, or decision-maker is CEO/founder (less technical)</li>
+            </ul>
+            <p style="margin:8px 0 0 0; font-style:italic; color:rgba(75,85,99,0.7);">Why: Reaching the right technical decision-maker reduces sales cycle by 6+ weeks. Name + title = qualified.</p>
+          </div>
+        </div>
+
+        <!-- ICP Fit -->
+        <div>
+          <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">✓ ICP Fit (Weight: 15%)</div>
+          <div style="font-size:12px; color:var(--ax-slate); line-height:1.7;">
+            <p style="margin:0 0 8px 0;"><strong>Scale:</strong> 1–2 dots</p>
+            <ul style="margin:0; padding-left:16px;">
+              <li><strong>2 dots:</strong> Perfect fit: independent operator, 5K–25K participants, 3–12 events, 3+ years operating</li>
+              <li><strong>1 dot:</strong> Partial fit: franchise model, very small/very large, newer operator, or niche sport</li>
+            </ul>
+            <p style="margin:8px 0 0 0; font-style:italic; color:rgba(75,85,99,0.7);">Why: Our model is proven on independent operators. Franchise/enterprise models have different decision-making.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; padding:20px; background:rgba(255,92,0,0.05); border-radius:8px; border-left:3px solid var(--ax-orange);">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:12px;">📋 Total Score Calculation</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8; font-family:monospace;">
+          <div><strong>Score = (Revenue × 0.30) + (Signal × 0.35) + (DM Clarity × 0.20) + (ICP Fit × 0.15)</strong></div>
+          <div style="margin-top:12px; color:rgba(75,85,99,0.8);">
+            <strong>Range:</strong> 1–10<br>
+            <strong>Tier 1 (Score 8–10):</strong> Outreach immediately — peak urgency window<br>
+            <strong>Tier 2 (Score 6–7):</strong> Warm outreach in Week 2–3<br>
+            <strong>Tier 3 (Score <6):</strong> Monitor for signal changes
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:20px; background:#f0f9ff; border-radius:8px; border-left:3px solid var(--ax-cobalt);">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:12px;">🎯 Why This Works</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+          This 4-dimensional scoring system filters out "should fit" companies and identifies "are actively transforming NOW" companies. Revenue and ICP fit are table stakes (everyone filters on these). <strong>Signal strength + decision-maker clarity</strong> are the real differentiators — they reveal timing and buying likelihood.
+        </div>
+
+        <div style="margin-top:24px; padding-top:24px; border-top:1px solid rgba(13,27,42,0.06); text-align:right;">
+          <button onclick="this.closest('details').removeAttribute('open')" style="background:#FF5C00; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:background 0.2s;">Close Section</button>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- DECISION RULES STRIP -->
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;">
+    <div style="flex: 1; min-width: 200px; background: rgba(255,92,0,0.08); border: 1.5px solid var(--ax-orange); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+      <div style="font-size: 22px; flex-shrink: 0;">🔴</div>
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: var(--ax-orange); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Tier 1 · Score 8–10</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--ax-navy);">Reach out this week</div>
+        <div style="font-size: 11px; color: var(--ax-slate); margin-top: 2px;">Peak urgency window — don't wait</div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 200px; background: rgba(13,27,42,0.04); border: 1.5px solid rgba(13,27,42,0.15); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+      <div style="font-size: 22px; flex-shrink: 0;">🟡</div>
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: var(--ax-navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Tier 2 · Score 6–7</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--ax-navy);">Warm outreach · Week 2–3</div>
+        <div style="font-size: 11px; color: var(--ax-slate); margin-top: 2px;">Qualified — sequence after Tier 1</div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 200px; background: rgba(107,114,128,0.06); border: 1.5px solid rgba(107,114,128,0.2); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+      <div style="font-size: 22px; flex-shrink: 0;">⚪</div>
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">Tier 3 · Score &lt;6</div>
+        <div style="font-size: 13px; font-weight: 700; color: var(--ax-navy);">Monitor for signal change</div>
+        <div style="font-size: 11px; color: var(--ax-slate); margin-top: 2px;">Revisit in 3–6 months</div>
+      </div>
+    </div>
+  </div>
+
+  <table class="scorecard-table" id="scorecardTable">
+    <thead>
+      <tr>
+        <th style="width:200px">Account</th>
+        <th>Score</th>
+        <th>Signal</th>
+        <th style="width:120px">Revenue Fit</th>
+        <th style="width:120px">Signal Strength</th>
+        <th style="width:120px">Decision-Maker</th>
+        <th style="width:120px">ICP Fit</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="scorecardBody"></tbody>
+  </table>
+
+  <!-- CUSTOMER VIABILITY TESTS -->
+  <div style="margin-top:64px; max-width:1200px; margin-left:auto; margin-right:auto;">
+    <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:16px;">✅ Customer Viability Tests</div>
+    <div style="font-size:14px; color:var(--ax-navy); margin-bottom:32px;"><strong>Why These Accounts Are Ready to Buy (Signal Strength Validation)</strong></div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+
+      <!-- Supertri -->
+      <div style="background:rgba(255,92,0,0.05); border:1px solid rgba(255,92,0,0.1); border-radius:12px; padding:24px; border-left:4px solid var(--ax-orange);">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🏆 Supertri (Tier 1 — URGENT)</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Signal:</strong> Raised $60M Series B + 7 acquisitions in 24 months</p>
+          <p style="margin:0 0 8px 0;"><strong>Viability Test:</strong> Founders' Circle PADI event = confirmed audience. 2025 acquisitions (Toronto, Blenheim, NJ State) + unified festival 2026 with 30K athletes</p>
+          <p style="margin:0 0 8px 0;"><strong>Confidence:</strong> 90% (transformation actively happening)</p>
+          <p style="margin:0;"><strong>Expected Engagement:</strong> High. M&A integration work is live, not future. Budget committed.</p>
+        </div>
+      </div>
+
+      <!-- Atlanta Track Club -->
+      <div style="background:rgba(13,148,136,0.05); border:1px solid rgba(13,148,136,0.1); border-radius:12px; padding:24px; border-left:4px solid #0D9488;">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🏃 Atlanta Track Club (Tier 1 — CONFIRMED)</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Signal:</strong> Strava integration LIVE with 1.5K new members</p>
+          <p style="margin:0 0 8px 0;"><strong>Viability Test:</strong> 9.2K race-day uploads, 67% route saves = proven digital adoption appetite</p>
+          <p style="margin:0 0 8px 0;"><strong>Confidence:</strong> 85% (already investing in athlete tech)</p>
+          <p style="margin:0;"><strong>Expected Engagement:</strong> High. They're past "should we digitize?" → now focused on "how do we scale?"</p>
+        </div>
+      </div>
+
+      <!-- Houston Marathon -->
+      <div style="background:rgba(220,38,38,0.05); border:1px solid rgba(220,38,38,0.1); border-radius:12px; padding:24px; border-left:4px solid #DC2626;">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🏅 Houston Marathon (Tier 1 — ACUTE)</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Signal:</strong> 12 staff, 25K participants = operational breaking point</p>
+          <p style="margin:0 0 8px 0;"><strong>Viability Test:</strong> Manual registration still primary system (confirmed via LinkedIn research). Scale crisis is observable.</p>
+          <p style="margin:0 0 8px 0;"><strong>Confidence:</strong> 80% (pain is acute, budget available)</p>
+          <p style="margin:0;"><strong>Expected Engagement:</strong> High. They're desperate for operational relief.</p>
+        </div>
+      </div>
+
+      <!-- Marathon Sports -->
+      <div style="background:rgba(59,130,246,0.05); border:1px solid rgba(59,130,246,0.1); border-radius:12px; padding:24px; border-left:4px solid #3b82f6;">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-navy); margin-bottom:16px;">🏃 Marathon Sports (Tier 2 — VALID)</div>
+        <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+          <p style="margin:0 0 8px 0;"><strong>Signal:</strong> 2 acquisitions in 12 months (active M&A)</p>
+          <p style="margin:0 0 8px 0;"><strong>Viability Test:</strong> Integration unification pain is acute. Data silos confirmed in product research.</p>
+          <p style="margin:0 0 8px 0;"><strong>Confidence:</strong> 85% (M&A integration crisis phase)</p>
+          <p style="margin:0;"><strong>Expected Engagement:</strong> Medium-High. Multi-stakeholder approval process, but urgency is real.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px; padding:24px; background:rgba(13,27,42,0.04); border-radius:12px; border-left:4px solid var(--ax-navy);">
+      <div style="font-size:12px; color:var(--ax-slate); line-height:1.8;">
+        <strong style="color:var(--ax-navy);">What This Means:</strong> These aren't theoretical prospects. Each has a specific, observable transformation happening NOW. We're not asking them to imagine their future pain — we're showing them how to solve their current crisis. That's why response rates are high and sales cycles compress.
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SIGNAL + PAIN CHARTS -->
+<section id="signals" style="background: var(--ax-off-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Signal Analysis</div>
+    <div class="section-title">What We Found in the Market</div>
+    <p class="section-desc">22 signals identified across 10 accounts. M&A and platform migration dominate — the two highest-intent buying triggers in enterprise software.</p>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3>Signal Types (by frequency)</h3>
+        <p>Higher-intent signals = shorter time to purchase decision</p>
+        <canvas id="signalChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Account Qualification Scores</h3>
+        <p>All 10 accounts scored across 4 dimensions. Minimum threshold: 6/10.</p>
+        <canvas id="scoreChart" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN MAPPING -->
+<section id="pain">
+  <div class="section-tag">Pain Area Mapping</div>
+  <div class="section-title">6 Pain Areas · Across 10 Accounts</div>
+  <p class="section-desc">System Fragmentation and M&A Integration lead — both are addressable by Axelerant's 4-phase model and directly proven by the IRONMAN case study.</p>
+  <div class="pain-grid" id="painGrid"></div>
+</section>
+
+<!-- MULTI-CHANNEL STRATEGY -->
+<section id="multichannel" style="background: var(--ax-navy); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag" style="color:var(--ax-orange); background:rgba(255,92,0,0.15); display:inline-block; padding:4px 12px; border-radius:100px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:12px;">Channel Architecture</div>
+    <div class="section-title" style="color:var(--ax-white); font-family:var(--ax-font-display); font-size:clamp(28px,4vw,42px); font-weight:700; line-height:1.15; margin-bottom:16px;">Multi-Channel Campaign Strategy</div>
+    <p style="color:rgba(255,255,255,0.65); font-size:15px; max-width:700px; line-height:1.7; margin-bottom:48px;">Four channels. One goal: 3–7 discovery calls from $5M–$12M endurance operators showing active purchase signals. Not every channel earns its place — these four were chosen because each plays a distinct, non-overlapping role in getting from first impression to booked call.</p>
+
+    <!-- 4 CHANNEL CARDS — 2x2 GRID -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(480px, 1fr)); gap:24px; margin-bottom:48px;">
+
+      <!-- CHANNEL 1: LinkedIn (Paid + Organic) -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,92,0,0.25); border-radius:16px; overflow:hidden;">
+        <div style="background:rgba(255,92,0,0.1); padding:20px 24px; border-bottom:1px solid rgba(255,92,0,0.15); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">① Anchor Channel</div>
+            <div style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:white;">LinkedIn — Paid + Organic</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.4);">Budget</div>
+            <div style="font-size:14px; font-weight:700; color:var(--ax-orange);">$2K–3K</div>
+          </div>
+        </div>
+        <div style="padding:24px;">
+          <p style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:20px;">LinkedIn is the only platform where we can target by job title — CTO, VP Ops, VP Marketing — at the exact companies we've researched. Paid carousel ads (4 variations, one per message bucket) run the awareness play. Organic thought leadership posts from an Axelerant SME run alongside for free, reaching the same audience repeatedly without adding budget. One platform, two plays, compounding returns.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:6px;">Paid: Targeting</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">CTO · VP Ops · VP Marketing · CFO<br>US-only · Sports/Events · 10–200 staff</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:6px;">Organic: Approach</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Problem-first posts · Expert voice · No marketing aesthetics · Text-forward</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Paid Performance</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">CTR: 1–2% · CPL: $30–80<br>CPC: $3–8</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Timing</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Paid: Launch Week 1<br>Organic: Start now, ongoing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHANNEL 2: Direct Outreach -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(16,185,129,0.25); border-radius:16px; overflow:hidden;">
+        <div style="background:rgba(16,185,129,0.08); padding:20px 24px; border-bottom:1px solid rgba(16,185,129,0.15); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:10px; font-weight:700; color:#10b981; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">② Highest Conversion</div>
+            <div style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:white;">Direct Outreach — Sales Navigator</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.4);">Cost</div>
+            <div style="font-size:14px; font-weight:700; color:#10b981;">SN Licence</div>
+          </div>
+        </div>
+        <div style="padding:24px;">
+          <p style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">We have 8 named accounts with specific decision-makers already identified. A signal-triggered InMail that opens with "you've been live on Haku for 18+ months — here's where most operators hit the wall at this stage" will outperform any ad impression. This is not cold outreach. It references a documented, real event the person lived through, and speaks to where they are <em>now</em> — not where they were.</p>
+          <div style="background:rgba(16,185,129,0.06); border-left:3px solid #10b981; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; color:#10b981; text-transform:uppercase; margin-bottom:4px;">The Principle</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.6;">Ads build awareness at scale. Direct outreach converts for named accounts. With only 8 targets, precision beats volume every time.</div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Message Trigger</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Reference the specific signal — migration date, M&A deal, platform hire — not a generic opener</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Timing</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Start now · No dependencies · 1–2 sends per account per month max</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHANNEL 3: Google Search -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(59,130,246,0.25); border-radius:16px; overflow:hidden;">
+        <div style="background:rgba(59,130,246,0.08); padding:20px 24px; border-bottom:1px solid rgba(59,130,246,0.15); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:10px; font-weight:700; color:#60a5fa; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">③ Intent Capture</div>
+            <div style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:white;">Google Search Ads (Narrowed Scope)</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.4);">Budget</div>
+            <div style="font-size:14px; font-weight:700; color:#60a5fa;">$1.0K–1.5K</div>
+          </div>
+        </div>
+        <div style="padding:24px;">
+          <p style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">LLMs are eroding Google's dominance for research queries. CTOs and VPs increasingly ask ChatGPT or Perplexity conceptual questions. However, for <strong style="color:white;">specific vendor discovery</strong> — "registration platform alternative to Active.com" — Google still wins. We're narrowing budget and keyword scope to high-intent transactional queries only, avoiding broad keywords where LLMs now answer directly.</p>
+
+          <div style="background:rgba(59,130,246,0.06); border-left:3px solid #60a5fa; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:16px;">
+            <div style="font-size:11px; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:4px;">⚠️ LLM Reality Check</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.6;">Zero-click AI Overviews and LLM search are shifting audience behaviour. We're treating Google as a secondary channel now, not primary. The bigger opportunity is LLM visibility (see foundation section below).</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:6px;">Keywords (High-Intent Only)</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">registration platform alternative<br>race management CRM<br>event platform migration</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:6px;">Landing Page Rule</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Must qualify fast. First line qualifies by operator profile. Leads straight to case study or diagnostic.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Performance (Realistic)</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">CTR: 2–3% (down) · CPL: $15–40<br>CPC: $1–3</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Timing</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Week 1 (parallel) but with reduced spend vs. LinkedIn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHANNEL 4: Industry Newsletters -->
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(139,92,246,0.25); border-radius:16px; overflow:hidden;">
+        <div style="background:rgba(139,92,246,0.08); padding:20px 24px; border-bottom:1px solid rgba(139,92,246,0.15); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:10px; font-weight:700; color:#a78bfa; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">④ Trust Channel</div>
+            <div style="font-family:var(--ax-font-display); font-size:18px; font-weight:700; color:white;">Industry Newsletters</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.4);">Budget</div>
+            <div style="font-size:14px; font-weight:700; color:#a78bfa;">$1.5K–2.5K</div>
+          </div>
+        </div>
+        <div style="padding:24px;">
+          <p style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">Running USA, Triathlon Business International, Sports Business Journal — these are read by the exact operators we've named, in their inbox, on their terms. A sponsored placement carries the publication's trust, making it feel like a recommendation rather than an ad. Higher engagement than cold display, warmer audience than Google. Start outreach this week — 2–3 week lead time for early May sends.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:#a78bfa; text-transform:uppercase; margin-bottom:6px;">Target Publications</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Running USA Newsletter<br>Triathlon Business Intl<br>Trail Running Magazine<br>Sports Business Journal</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:12px;">
+              <div style="font-size:10px; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:6px;">Performance</div>
+              <div style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7;">Open rate: 20–30%<br>CTR: 2–4% · CPL: $20–50<br>2–3 week lead time</div>
+            </div>
+          </div>
+
+          <!-- WHY THESE PUBLICATIONS (EXPANDABLE) -->
+          <details style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; cursor:pointer; margin-top:12px;">
+            <summary style="font-weight:600; color:#a78bfa; font-size:12px; text-transform:uppercase; display:flex; align-items:center; gap:8px; user-select:none;">
+              <span>📰</span> Why These Publications? Click to Expand
+            </summary>
+            <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.06);">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; font-size:11px; color:rgba(255,255,255,0.7); line-height:1.7;">
+
+                <div>
+                  <div style="font-weight:700; color:#a78bfa; margin-bottom:6px;">🏃 Running USA Newsletter</div>
+                  <p style="margin:0 0 6px 0;"><strong>Audience:</strong> 5,000+ race directors, marathon operators, running event professionals</p>
+                  <p style="margin:0 0 6px 0;"><strong>Why:</strong> Directly reaches our ICP (Houston Marathon, Atlanta Track Club, regional series operators are subscribers)</p>
+                  <p style="margin:0;"><strong>Signal Value:</strong> Readers are actively consuming content about "running business operations" — peak intent moment</p>
+                </div>
+
+                <div>
+                  <div style="font-weight:700; color:#a78bfa; margin-bottom:6px;">🥇 Triathlon Business Intl</div>
+                  <p style="margin:0 0 6px 0;"><strong>Audience:</strong> 3,000+ triathlon operators, event series owners, franchise operators</p>
+                  <p style="margin:0 0 6px 0;"><strong>Why:</strong> Targets our Tier 1 accounts (Supertri, Brooksee/REVEL, Atlanta Track Club are in this segment)</p>
+                  <p style="margin:0;"><strong>Signal Value:</strong> More niche = more qualified. Triathlon operators face M&A + scaling pressure earlier than running</p>
+                </div>
+
+                <div>
+                  <div style="font-weight:700; color:#a78bfa; margin-bottom:6px;">🏔️ Trail Running Magazine</div>
+                  <p style="margin:0 0 6px 0;"><strong>Audience:</strong> 8,000+ trail race organizers, ultramarathon series owners</p>
+                  <p style="margin:0 0 6px 0;"><strong>Why:</strong> Emerging segment with less established platforms (unlike road running market saturation)</p>
+                  <p style="margin:0;"><strong>Signal Value:</strong> Trail operators are earlier in digitization curve = higher platform adoption urgency</p>
+                </div>
+
+                <div>
+                  <div style="font-weight:700; color:#a78bfa; margin-bottom:6px;">💼 Sports Business Journal</div>
+                  <p style="margin:0 0 6px 0;"><strong>Audience:</strong> 12,000+ sports executives, sponsors, business decision-makers</p>
+                  <p style="margin:0 0 6px 0;"><strong>Why:</strong> Reaches secondary influencers (CFOs, board members, sponsors) who influence tech budgets</p>
+                  <p style="margin:0;"><strong>Signal Value:</strong> Sponsor-side perspective = validates ROI argument we're making to operators</p>
+                </div>
+
+              </div>
+
+              <div style="margin-top:16px; padding:12px; background:rgba(139,92,246,0.1); border-radius:6px; border-left:3px solid #a78bfa;">
+                <div style="font-weight:700; color:#a78bfa; font-size:10px; text-transform:uppercase; margin-bottom:6px;">🎯 Why Newsletter Sponsorships Win Over Other Channels</div>
+                <ul style="margin:0; padding-left:16px; font-size:11px; color:rgba(255,255,255,0.7); line-height:1.7;">
+                  <li><strong>Audience selectivity:</strong> Newsletter readers self-identify as interested in this topic (unlike cold display ads)</li>
+                  <li><strong>Trust transfer:</strong> Publication's credibility carries over to our message (not an ad, feels like a recommendation)</li>
+                  <li><strong>Inbox presence:</strong> Inbox is personal; we're reaching decision-makers in a moment of deliberate engagement</li>
+                  <li><strong>Better CPL:</strong> $20–50 cost-per-lead vs. $50–200 for cold LinkedIn outreach</li>
+                  <li><strong>LLM indexing:</strong> Sponsored content in reputable publications becomes indexed by search engines + AI training data (feeds our LLM visibility strategy)</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.06); text-align:right;">
+                <button onclick="this.closest('details').removeAttribute('open')" style="background:#a78bfa; color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-size:11px; font-weight:600; transition:background 0.2s;">Close Section</button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FOUNDATIONAL ASSET: LLM VISIBILITY -->
+    <div style="background:linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.06) 100%); border:1px solid rgba(139,92,246,0.2); border-radius:16px; padding:32px; margin-bottom:48px;">
+      <div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:300px;">
+          <div style="font-size:10px; font-weight:700; color:#a78bfa; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Critical Infrastructure</div>
+          <h3 style="font-family:var(--ax-font-display); font-size:22px; font-weight:700; color:white; margin-bottom:12px;">LLM Visibility: The Foundation That Enables All Channels</h3>
+          <p style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:16px;">When a CTO asks ChatGPT, Perplexity, or Claude "who are the best agencies for rebuilding an event platform architecture," Axelerant needs to appear in that answer. Right now, we have no strategy for this — and it's become essential. This isn't a channel; it's the foundation all channels sit on.</p>
+          <p style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:16px;">LLMs source their responses from indexed web content. The Ironman case study — if it's well-structured, publicly accessible, and rich in technical detail — becomes discoverable by LLM training and retrieval systems. A technical blog post explaining the architecture becomes citable. A bylined article in Sports Business Journal becomes reference material. These assets directly feed LLM visibility without paid spend.</p>
+          <div style="background:rgba(255,255,255,0.04); border-radius:8px; padding:16px; margin-top:16px;">
+            <div style="font-size:11px; font-weight:700; color:#a78bfa; text-transform:uppercase; margin-bottom:8px;">Why This Matters Now</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.7;">Google Ads decay as zero-click AI Overviews increase. LinkedIn retains identity-based value. But neither captures the researcher who's not yet ready to click on an ad — they're asking an LLM first. That's where we win or lose the narrative.</div>
+          </div>
+        </div>
+        <div style="min-width:280px; display:flex; flex-direction:column; gap:12px;">
+          <div style="background:rgba(139,92,246,0.1); border-radius:10px; padding:16px; border:1px solid rgba(139,92,246,0.2);">
+            <div style="font-size:11px; font-weight:700; color:#a78bfa; text-transform:uppercase; margin-bottom:8px;">Assets That Feed LLM Visibility</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">✓ Ironman case study (public, technical)<br>✓ Architecture blog posts<br>✓ Bylined industry articles<br>✓ Third-party reviews/comparisons<br>✓ White papers + technical documentation</div>
+          </div>
+          <div style="background:rgba(59,130,246,0.08); border-radius:10px; padding:16px; border:1px solid rgba(59,130,246,0.15);">
+            <div style="font-size:11px; font-weight:700; color:#60a5fa; text-transform:uppercase; margin-bottom:8px;">The Critical Path</div>
+            <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">1. Case study hub LIVE (highest priority)<br>2. Ironman case study published + indexed<br>3. Technical content strategy kicks in<br>4. Earned media placements compound reach</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT WE'RE NOT DOING + WHY -->
+    <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:24px; margin-bottom:40px;">
+      <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px;">Channels Deliberately Not in This Plan</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; font-size:12px; color:rgba(255,255,255,0.5); line-height:1.6;">
+        <div><strong style="color:rgba(255,255,255,0.65);">Reddit Paid Ads</strong> — r/triathlon is 90%+ athletes, not race directors. Wrong audience for paid spend.</div>
+        <div><strong style="color:rgba(255,255,255,0.65);">Webinars (now)</strong> — Requires an audience to fill them. Revisit in Week 3 once LinkedIn builds awareness.</div>
+        <div><strong style="color:rgba(255,255,255,0.65);">Conferences</strong> — High trust, but long lead time. Plan for Phase 2 once initial pipeline is validated.</div>
+        <div><strong style="color:rgba(255,255,255,0.65);">Earned Media</strong> — Valuable long-term, but 6–8 week cycle. Not a launch channel.</div>
+      </div>
+    </div>
+
+
+
+    <div style="background:rgba(255,92,0,0.06); border:1px solid rgba(255,92,0,0.2); border-radius:12px; padding:28px;">
+      <div style="font-size:12px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; letter-spacing:1px; margin-bottom:20px;">Launch Sequence (Post-Hub)</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0;">
+        <div style="padding:0 20px 0 0; border-right:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">Week 1</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">LinkedIn Paid live (Case study hub live)<br>Google Search live<br>UTM tracking live<br>Direct outreach begins</div>
+        </div>
+        <div style="padding:0 20px; border-right:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">Week 1–2</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">LinkedIn organic posts<br>Reddit/forum authentic participation<br>Performance data baseline</div>
+        </div>
+        <div style="padding:0 20px; border-right:1px solid rgba(255,255,255,0.07);">
+          <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">Week 2–3</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">Newsletter sponsorships live<br>First webinar scheduled<br>Winning message analysis</div>
+        </div>
+        <div style="padding:0 0 0 20px;">
+          <div style="font-size:10px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:8px;">Week 3–4</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.65); line-height:1.8;">Discovery calls booked<br>Earned media begins<br>Phase 2 planning<br>Scale winning channels</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section id="campaigns" style="background: var(--ax-off-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Campaign Examples</div>
+    <div class="section-title">Real Copy · Real Pain · Real Proof</div>
+    <p class="section-desc">4 message buckets, each targeting a specific pain trigger with a Rory Sutherland cognitive reframe. Select a bucket to see the hook, proof, and targeting.</p>
+
+    <!-- FRAMEWORK EXPLANATION -->
+    <div style="background:white; border-radius:12px; padding:32px; margin-bottom:40px; border:1px solid #e5e7eb;">
+      <div style="margin-bottom:24px; border-bottom:2px solid #f3f4f6; padding-bottom:24px;">
+        <h3 style="font-size:16px; font-weight:700; color:var(--ax-navy); margin:0 0 12px 0; font-family:var(--ax-font-display);">🧠 LinkedIn Ad Setup: Our Approach</h3>
+        <p style="font-size:13px; color:var(--ax-slate); margin:0 0 12px 0; line-height:1.6; font-weight:500;">Our copy stands out because it combines signal-based targeting, psychological reframing, and proof-driven storytelling — turning real business moments into high-conversion campaigns.</p>
+        <p style="font-size:13px; color:var(--ax-navy); margin:0; line-height:1.6; font-style:italic;">It doesn't just explain problems — it reframes them in a way that sticks.</p>
+      </div>
+
+      <!-- How It's Different -->
+      <div style="padding:20px; background:#f9fafb; border-radius:8px; margin-bottom:24px;">
+        <div style="font-size:12px; font-weight:600; color:var(--ax-orange); text-transform:uppercase; margin-bottom:12px;">🎯 How It's Different</div>
+        <ul style="font-size:13px; color:var(--ax-navy); margin:0; padding-left:20px; line-height:1.8;">
+          <li>We anchor every message in real operator truth, so it feels immediately credible</li>
+          <li>We use unexpected but true phrasing to create memorability and stop the scroll</li>
+          <li>We shift from "this is happening" → "this is how to think about it", changing perception, not just awareness</li>
+          <li>We move from problem → consequence, making the cost of inaction visible</li>
+          <li>We lead with proof (IRONMAN) before positioning ourselves, reducing resistance and building trust</li>
+          <li>We show proof + system + ownership — not just ideas, but how it actually works at scale</li>
+        </ul>
+      </div>
+
+      <!-- Why It Works -->
+      <div style="padding:20px; background:#fff8f3; border-radius:8px; border-left:3px solid var(--ax-orange); margin-bottom:24px;">
+        <div style="font-size:12px; font-weight:600; color:var(--ax-orange); text-transform:uppercase; margin-bottom:12px;">⚡ Why It Works</div>
+        <ul style="font-size:13px; color:var(--ax-navy); margin:0; padding-left:20px; line-height:1.8;">
+          <li>It meets the audience at the exact moment of pressure (post-migration, scaling, funding, M&A)</li>
+          <li>It creates a pattern interrupt — familiar problems, expressed in unexpected ways</li>
+          <li>It balances logic (systems, architecture, metrics) with psychology (risk, control, status, proof)</li>
+          <li>It separates attention from explanation — hook first, insight next, proof after</li>
+          <li>It feels specific and contextual, not generic or templated</li>
+        </ul>
+      </div>
+
+      <!-- The System Behind It -->
+      <div style="padding:20px; background:#f0f9ff; border-radius:8px; border-left:3px solid var(--ax-cobalt); margin-bottom:24px;">
+        <div style="font-size:12px; font-weight:600; color:var(--ax-cobalt); text-transform:uppercase; margin-bottom:12px;">🔄 The System Behind It</div>
+        <p style="font-size:13px; color:var(--ax-navy); margin:0 0 12px 0; line-height:1.6;">This isn't just messaging — it's a repeatable engine:</p>
+        <p style="font-size:13px; font-weight:600; color:var(--ax-navy); margin:0; font-family:monospace; text-align:center; padding:12px; background:white; border-radius:6px; border:1px solid #cbd5e1;">Signal → Account → Insight → Message → Campaign → Conversion</p>
+        <p style="font-size:13px; color:var(--ax-navy); margin:12px 0 0 0; line-height:1.6; font-style:italic;">We're not creating demand — we're capturing it at the moment it becomes unavoidable.</p>
+      </div>
+
+      <!-- Final Positioning -->
+      <div style="padding:20px; background:#f5f3ff; border-radius:8px; border-left:3px solid #8b5cf6;">
+        <div style="font-size:12px; font-weight:600; color:#8b5cf6; text-transform:uppercase; margin-bottom:12px;">🏆 Final Positioning</div>
+        <p style="font-size:13px; color:var(--ax-navy); margin:0; line-height:1.6;">Our messaging doesn't try to convince — it reflects real pressure the audience is already experiencing, reframes it in a way that's impossible to ignore, and resolves it with systems we've already proven at scale.</p>
+      </div>
+    </div>
+
+    <div class="campaign-tabs">
+      <button class="campaign-tab active" onclick="switchTab(0)">🔴 Race Day Reliability</button>
+      <button class="campaign-tab" onclick="switchTab(1)">🟡 Integration Architecture</button>
+      <button class="campaign-tab" onclick="switchTab(2)">🟣 M&A Integration Playbook</button>
+      <button class="campaign-tab" onclick="switchTab(3)">🟠 Athlete Experience &amp; Retention</button>
+    </div>
+    <div class="campaign-panels" id="campaignPanels"></div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section id="timing">
+  <div class="section-tag">Why Now</div>
+  <div class="section-title">Three Market Forces Creating Urgency</div>
+  <p class="section-desc">This is not cyclical demand. Three structural forces are converging in 2026 that make this the optimal entry window for the sports endurance vertical.</p>
+  <div class="why-now-grid">
+    <div class="why-now-card">
+      <div class="icon">📉</div>
+      <h4>Post-COVID Scale Ceiling</h4>
+      <p>Operators scaled event volume on legacy registration platforms built for pre-COVID demand. Those platforms are hitting ceiling. Race day outages, data silos, and manual workarounds are the symptom.</p>
+      <span class="why-now-stat">8 of 10</span>
+      <p style="font-size:12px; color:var(--ax-slate); margin-top:4px">accounts show scale failure signals</p>
+    </div>
+    <div class="why-now-card">
+      <div class="icon">🤝</div>
+      <h4>M&A Consolidation Wave</h4>
+      <p>Private equity is rolling up endurance events. Acquisitions create platform fragmentation urgency — 3 tech stacks, 2 brands, 1 team. The window to pitch unified architecture is exactly 12–18 months post-deal.</p>
+      <span class="why-now-stat">4 of 10</span>
+      <p style="font-size:12px; color:var(--ax-slate); margin-top:4px">accounts in active M&A integration</p>
+    </div>
+    <div class="why-now-card">
+      <div class="icon">💰</div>
+      <h4>Sponsor Data Demands</h4>
+      <p>Title sponsors — Chevron, AJC, Northside Hospital — are demanding verified audience data for ROI reporting. Operators who can't produce it are losing renewals. The pain is acute and measurable.</p>
+      <span class="why-now-stat">7 of 10</span>
+      <p style="font-size:12px; color:var(--ax-slate); margin-top:4px">accounts have confirmed sponsor data pressure</p>
+    </div>
+    <div class="why-now-card">
+      <div class="icon">📱</div>
+      <h4>Athlete Expectation Parity</h4>
+      <p>Athletes are comparing their event experience to consumer apps. Strava, Garmin Connect, and Nike Run Club have raised the bar. Operators who don't meet it lose repeat registrations and community.</p>
+      <span class="why-now-stat">$49M+</span>
+      <p style="font-size:12px; color:var(--ax-slate); margin-top:4px">TAM in-cycle for 2026 engagement</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" style="background: var(--ax-off-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Execution Plan</div>
+    <div class="section-title">4-Week Launch Sequence</div>
+    <p class="section-desc">This can be executed in 4 weeks. Step 1–2 are already done. Steps 3–6 are sequenced, resourced, and ready.</p>
+
+    <!-- RESOURCE ALLOCATION (EXPANDABLE) -->
+    <details style="background:white; border:1px solid rgba(13,27,42,0.08); border-radius:12px; padding:24px; margin-bottom:40px; cursor:pointer;">
+      <summary style="font-weight:700; color:var(--ax-navy); font-size:15px; display:flex; align-items:center; gap:12px; user-select:none;">
+        <span style="font-size:18px;">👥</span> Resource Allocation & Budget — Expand to Learn
+      </summary>
+      <div style="margin-top:24px; padding-top:24px; border-top:1px solid rgba(13,27,42,0.06);">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:32px;">
+
+          <!-- Team Structure -->
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:16px;">👥 Team & Roles</div>
+            <div style="font-size:12px; color:var(--ax-slate); line-height:1.9;">
+              <p style="margin:0 0 12px 0;"><strong>Campaign Lead (1 FTE)</strong><br>Owns asset creation, LinkedIn targeting setup, newsletter coordination, weekly reporting</p>
+              <p style="margin:0 0 12px 0;"><strong>Sales Development Rep (0.5 FTE)</strong><br>Phone outreach, call scheduling, qualification calls, champion identification</p>
+              <p style="margin:0 0 12px 0;"><strong>Data/Analytics (0.25 FTE)</strong><br>Signal tracking, scorecard updates, monthly reporting, win/loss analysis</p>
+              <p style="margin:0;"><strong>Sales Engineer (Ad-hoc)</strong><br>Discovery calls, technical qualification, proposal support</p>
+            </div>
+          </div>
+
+          <!-- Budget Breakdown -->
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:16px;">💰 4-Week Budget</div>
+            <div style="font-size:12px; color:var(--ax-slate); line-height:1.9;">
+              <p style="margin:0 0 12px 0;"><strong>Paid Media</strong><br>LinkedIn: $2K–$3K<br>Google: $1.5K–$2.5K<br>Newsletters: $1.5K–$2.5K<br><strong style="color:var(--ax-navy);">Subtotal: $5K–$8K</strong></p>
+              <p style="margin:0 0 12px 0;"><strong>Tools & Platforms</strong><br>LinkedIn Sales Nav, HubSpot, Calendly<br><strong style="color:var(--ax-navy);">Subtotal: $500/month</strong></p>
+              <p style="margin:0;"><strong>Contingency (10%)</strong><br><strong style="color:var(--ax-navy);">Subtotal: $800–$1000</strong></p>
+              <p style="margin-top:16px; padding-top:16px; border-top:1px solid rgba(13,27,42,0.08); font-weight:700; color:var(--ax-navy);">Total 4-Week Investment: $8K–$10K</p>
+            </div>
+          </div>
+
+          <!-- CPL Analysis -->
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:16px;">📊 Cost Per Lead Assumption</div>
+            <div style="font-size:12px; color:var(--ax-slate); line-height:1.9;">
+              <p style="margin:0 0 12px 0;"><strong>Budget: $8K–$10K</strong><br>Target Calls: 3–7<br><strong style="color:var(--ax-navy);">CPL: $1,200–$3,300</strong></p>
+              <p style="margin:0 0 12px 0;"><em style="color:rgba(75,85,99,0.8);">Why higher than cold outreach:</em> We're paying to find the right person at the right time (not spray-and-pray). Signal-based targeting reduces volume but increases quality.</p>
+              <p style="margin:0; padding-top:12px; border-top:1px solid rgba(13,27,42,0.08);"><strong>If successful:</strong> Year 1 CPL drops to $400–$800 (with second cohort + references)</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:32px; padding-top:32px; border-top:1px solid rgba(13,27,42,0.06); text-align:right;">
+          <button onclick="this.closest('details').removeAttribute('open')" style="background:#FF5C00; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:background 0.2s;">Close Section</button>
+        </div>
+      </div>
+    </details>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot done">✓</div>
+        <div class="timeline-content done">
+          <div class="timeline-week">Week 0 · Complete</div>
+          <h4>ICP + Signal-Based List Building</h4>
+          <p>22 accounts sourced, 5-lens qualification applied, 10 qualified, 8 decision-makers confirmed.</p>
+          <div class="timeline-tasks">
+            <span class="task-chip done-chip">22 accounts sourced</span>
+            <span class="task-chip done-chip">Qualification scorecard built</span>
+            <span class="task-chip done-chip">Decision-makers confirmed</span>
+            <span class="task-chip done-chip">Pain areas diagnosed</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot done">3</div>
+        <div class="timeline-content done">
+          <div class="timeline-week">Week 1 · DONE</div>
+          <h4>Message Positioning + Asset Creation</h4>
+          <p>4 message variations (one per pain bucket), LinkedIn carousel ads, Google search copy, industry newsletter briefing. Rory Sutherland reframe applied — one cognitive twist per campaign.</p>
+          <div class="timeline-tasks">
+            <span class="task-chip done-chip">4 ad variations</span>
+            <span class="task-chip done-chip">Landing page</span>
+            <span class="task-chip done-chip">LinkedIn targeting setup</span>
+            <span class="task-chip done-chip">Newsletter briefing</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot future">4</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Week 2</div>
+          <h4>Campaign Launch (LinkedIn + Google)</h4>
+          <p>LinkedIn carousel ads ($2K–3K), Google high-intent keywords ($1.5K–2.5K), Reddit community participation ($0).</p>
+          <div class="timeline-tasks">
+            <span class="task-chip">LinkedIn paid ads live</span>
+            <span class="task-chip">Google search live</span>
+            <span class="task-chip">Reddit posts</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot future">5</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Week 3</div>
+          <h4>Newsletter Sponsorship + Webinar Outreach</h4>
+          <p>Sponsored content in 2 industry newsletters ($1.5K–2.5K). Webinar invite to Tier 1 decision-makers on M&A integration playbook.</p>
+          <div class="timeline-tasks">
+            <span class="task-chip">Newsletter live</span>
+            <span class="task-chip">Webinar invite</span>
+            <span class="task-chip">Retargeting enabled</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot future">6</div>
+        <div class="timeline-content">
+          <div class="timeline-week">Week 4</div>
+          <h4>First Discovery Calls Booked</h4>
+          <p>Target: 3–7 diagnostic calls booked from Tier 1 accounts. Supertri, Atlanta Track Club, Houston Marathon Committee as first priority.</p>
+          <div class="timeline-tasks">
+            <span class="task-chip">Supertri call</span>
+            <span class="task-chip">ATC call</span>
+            <span class="task-chip">Houston Marathon call</span>
+            <span class="task-chip">Pipeline begins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS METRICS & KPIs -->
+<section id="metrics" style="background: var(--ax-white); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag">Success Metrics</div>
+    <div class="section-title">How We Track Winning</div>
+    <p class="section-desc">Concrete KPIs for each phase. This is how we measure execution and prove ROI to stakeholders.</p>
+
+    <div style="margin-top:48px; display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:32px;">
+
+      <!-- PILOT PHASE -->
+      <div style="background:rgba(13,27,42,0.04); border:1px solid rgba(13,27,42,0.08); border-radius:12px; padding:32px;">
+        <div style="font-size:13px; font-weight:700; color:var(--ax-orange); text-transform:uppercase; margin-bottom:20px;">📅 Pilot Phase (Weeks 1–4)</div>
+        <div style="font-size:13px; color:var(--ax-slate); line-height:1.9;">
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">📞 Diagnostic Calls Booked</strong><br>Target: 3–7 (Tier 1 priority)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Success = at least 3 calls with qualified decision-makers</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">📊 Response Rate</strong><br>Target: 8–12% (LinkedIn + Newsletter)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Indicates message resonance with target persona</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">💰 Cost Per Lead</strong><br>Target: $150–$300 (blended across channels)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">LinkedIn + Google + Newsletters combined</span>
+          </div>
+          <div>
+            <strong style="color:var(--ax-navy);">🎯 DM Engagement Rate</strong><br>Target: 60%+ (primary decision-makers respond)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Shows signal accuracy (correct person, correct timing)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCELERATION PHASE -->
+      <div style="background:rgba(13,148,136,0.05); border:1px solid rgba(13,148,136,0.1); border-radius:12px; padding:32px;">
+        <div style="font-size:13px; font-weight:700; color:#0D9488; text-transform:uppercase; margin-bottom:20px;">🚀 Acceleration Phase (Months 2–3)</div>
+        <div style="font-size:13px; color:var(--ax-slate); line-height:1.9;">
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">💼 Pipeline Value</strong><br>Target: $500K–$1M (in active discussions)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Accounts moved to proposal/evaluation stage</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">⏱️ Sales Cycle</strong><br>Target: 60–90 days (decision-makers to close)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Demonstrates urgency (transformation happens fast)</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">✅ Win Rate</strong><br>Target: 20–30% (first cohort is warm)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Inbound from strong signals = higher conversion</span>
+          </div>
+          <div>
+            <strong style="color:var(--ax-navy);">📈 ARR Impact</strong><br>Target: $100K–$300K (from first customers)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Proof that channel works; enables scale</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR 1 TARGET -->
+      <div style="background:rgba(220,38,38,0.05); border:1px solid rgba(220,38,38,0.1); border-radius:12px; padding:32px;">
+        <div style="font-size:13px; font-weight:700; color:#DC2626; text-transform:uppercase; margin-bottom:20px;">🎯 Year 1 Target</div>
+        <div style="font-size:13px; color:var(--ax-slate); line-height:1.9;">
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">Customers Signed</strong><br>Target: 2–3 (from 10 qualified accounts)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Conservative 20–30% close rate</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">ARR Generated</strong><br>Target: $150K–$350K<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Avg deal $75K–$400K initial × 2–3 customers</span>
+          </div>
+          <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(13,27,42,0.08);">
+            <strong style="color:var(--ax-navy);">Pipeline Built</strong><br>Target: 5–7 additional accounts in active discussion<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Reference + proof → easier to reach Tier 2</span>
+          </div>
+          <div>
+            <strong style="color:var(--ax-navy);">Case Studies Generated</strong><br>Target: 1–2 published (with customer permission)<br><span style="font-size:11px; color:rgba(75,85,99,0.7);">Proof for next cohort; Ironman as second reference</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- RISK REGISTER -->
+<section id="risks" style="background: var(--ax-navy); max-width:100%; padding: 80px 32px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag" style="color:var(--ax-orange);">Risk Management</div>
+    <div class="section-title" style="color:white;">Risks & Mitigations</div>
+    <p class="section-desc" style="color:rgba(255,255,255,0.7);">We've identified what could derail execution and have contingencies in place.</p>
+
+    <div style="margin-top:48px; overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:13px;">
+        <thead>
+          <tr style="border-bottom:2px solid rgba(255,255,255,0.1);">
+            <th style="padding:16px; text-align:left; color:var(--ax-orange); font-weight:700;">Risk</th>
+            <th style="padding:16px; text-align:center; color:var(--ax-orange); font-weight:700; width:80px;">Likelihood</th>
+            <th style="padding:16px; text-align:center; color:var(--ax-orange); font-weight:700; width:60px;">Impact</th>
+            <th style="padding:16px; text-align:left; color:var(--ax-orange); font-weight:700;">Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <td style="padding:16px; color:rgba(255,255,255,0.9);"><strong>Response rate lower than 8%</strong> (cold LinkedIn or Google ads underperform)</td>
+            <td style="padding:16px; text-align:center; color:#fbbf24;">Medium</td>
+            <td style="padding:16px; text-align:center; color:#ef4444;">High</td>
+            <td style="padding:16px; color:rgba(255,255,255,0.8);">Expand newsletter spend (2→4 publications); increase retargeting budget from $800 to $1.5K</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <td style="padding:16px; color:rgba(255,255,255,0.9);"><strong>Decision-makers don't engage</strong> (e.g., Supertri CEO focused on fundraise, not platform)</td>
+            <td style="padding:16px; text-align:center; color:#fbbf24;">Medium</td>
+            <td style="padding:16px; text-align:center; color:#ef4444;">High</td>
+            <td style="padding:16px; color:rgba(255,255,255,0.8);">Contact Event Director + Ops VP directly (secondary DMU); shorten discovery call from 60m to 30m (lower commitment)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <td style="padding:16px; color:rgba(255,255,255,0.9);"><strong>Signal decay (accounts lose urgency)</strong> (e.g., M&A integration completed, crisis resolved)</td>
+            <td style="padding:16px; text-align:center; color:#fbbf24;">Medium</td>
+            <td style="padding:16px; text-align:center; color:#f97316;">Medium</td>
+            <td style="padding:16px; color:rgba(255,255,255,0.8);">Keep Win/Loss data on signal strength; add "Tier 3 Watch" accounts for follow-up in 3–6 months</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <td style="padding:16px; color:rgba(255,255,255,0.9);"><strong>Creative fatigue (LinkedIn carousel burnout)</strong> (CTR drops >20% mid-campaign)</td>
+            <td style="padding:16px; text-align:center; color:#86efac;">Low</td>
+            <td style="padding:16px; text-align:center; color:#f97316;">Medium</td>
+            <td style="padding:16px; color:rgba(255,255,255,0.8);">Rotate creative every 3 weeks; test video vs. static variants; shift to Google + newsletter channels</td>
+          </tr>
+          <tr>
+            <td style="padding:16px; color:rgba(255,255,255,0.9);"><strong>Competitive response</strong> (competitor undercuts price or copies playbook)</td>
+            <td style="padding:16px; text-align:center; color:#86efac;">Low</td>
+            <td style="padding:16px; text-align:center; color:#f97316;">Medium</td>
+            <td style="padding:16px; color:rgba(255,255,255,0.8);">Emphasize Ironman proof + M&A playbook depth (not just platform); move fast to close first 2 customers before competitor gets established</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  Endurance Sports GTM Engine (US) &nbsp;·&nbsp; <span>Axelerant</span> &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; April 2026
+</footer>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const accounts = [
+  {
+    name: "Supertri", revenue: "$5.7M ✓", score: 10, tier: 1,
+    signal: "M&A + $60M Raise",
+    dims: { rev: 3, sig: 3, dm: 2, icp: 2 },
+    dm: "Michael D'hulst (CEO & Co-Founder)",
+    painAreas: ["System Fragmentation (7 independent platforms)", "M&A Integration (7 acquisitions in 2 years)", "Athlete Experience (rebrand = new journey)", "Sponsor Data (NYC + Chicago title sponsors)", "Scale Failures (race-day risk)"],
+    campaign: "M&A Integration Playbook",
+    why: "Rebranded from SLT → Supertri (2025), seeking $60M fundraise = transformation budget is live. 7 acquisitions in 2 years means 7 platforms that don't talk to each other."
+  },
+  {
+    name: "Brooksee / REVEL", revenue: "$5M ✓", score: 9, tier: 1,
+    signal: "New CEO (Jan 2024)",
+    dims: { rev: 3, sig: 3, dm: 2, icp: 1 },
+    dm: "Phil Dumontet (CEO, hired Jan 2024)",
+    painAreas: ["Athlete Experience (9 distinct locations, no unified identity)", "System Fragmentation (timing + registration + no CRM)", "Scale Failures (50K participants across 9 events)", "Commerce (destination race gear untapped)", "Sponsor Data (Las Vegas + Portland title sponsors)"],
+    campaign: "Integration Architecture",
+    why: "New CEO 15 months in — still in mandate window. 50K participants across 9 distinct events with no unified athlete identity is an acute platform problem."
+  },
+  {
+    name: "Atlanta Track Club", revenue: "$10M ✓", score: 8, tier: 1,
+    signal: "Strava Integration 2024",
+    dims: { rev: 2, sig: 3, dm: 2, icp: 1 },
+    dm: "Rich Kenah (CEO/Olympian) · Eric Heintz (COO)",
+    painAreas: ["System Fragmentation (40+ events, no unified athlete view)", "Scale Failures (60K Peachtree Road Race = outage risk every year)", "Athlete Experience (Strava integration started but partial)", "Sponsor Data (AJC, Northside Hospital obligations)", "Manual Operations (41 staff, 40+ events)"],
+    campaign: "Athlete Experience & Retention",
+    why: "Already investing in Strava integration = proven digital transformation appetite. AJC Peachtree with 60K participants is the highest race-day outage risk in this list."
+  },
+  {
+    name: "Houston Marathon Cmte", revenue: "$5.1M ✓", score: 8, tier: 1,
+    signal: "12 Staff / 25K Participants",
+    dims: { rev: 3, sig: 2, dm: 2, icp: 1 },
+    dm: "Wade Morehead (Executive Director) · Carly Caulfield (Race Director)",
+    painAreas: ["Manual Operations (12 staff managing 25K participants + 7K volunteers)", "Sponsor Data (Chevron + corporate sponsors need annual ROI)", "Scale Failures (25K participants on legacy platform)", "Athlete Experience (repeat retention critical for sustaining 25K field)", "System Fragmentation (4+ systems, no unified data)"],
+    campaign: "Race Day Reliability",
+    why: "12 staff managing 25K participants and 7K volunteers is operationally impossible without automation. Chevron sponsorship = verified data obligation."
+  },
+  {
+    name: "Marathon Sports", revenue: "$5–15M est", score: 7, tier: 2,
+    signal: "2 Acquisitions in 12 Months",
+    dims: { rev: 1, sig: 3, dm: 2, icp: 1 },
+    dm: "Ben Cooke (President) · Tom Hooper (Trail Initiative)",
+    painAreas: ["M&A Integration (retail + six03 + Cranmore = 3 platforms)", "System Fragmentation (retail + events + trail = separate data)", "Athlete Experience (six03 community is vocal and loyal)", "Commerce (retail + races = post-race upsell opportunity)", "Manual Operations (small team managing retail + events)"],
+    campaign: "M&A Integration Playbook",
+    why: "Acquired six03 Trail and Cranmore Mountain Race in 12 months. Three platforms, two brands, one team. Classic M&A integration pain at its peak."
+  },
+  {
+    name: "Ventures Endurance", revenue: "Gannett subsidiary", score: 7, tier: 2,
+    signal: "Platform Migration Aug 2024",
+    dims: { rev: 1, sig: 3, dm: 2, icp: 1 },
+    dm: "Nate Scott (VP GM, Gannett Sports & Events)",
+    painAreas: ["System Fragmentation (115 events, CRM + sponsor data separate from haku)", "Sponsor Data (Gannett = media company, advertisers demand verified audience data)", "Athlete Experience (115 events, generic experience across all)", "M&A Integration (Rugged Races + RAM Racing rebrand = still harmonizing)", "Scale Failures (115 events aggregate = one outage = brand damage for all)"],
+    campaign: "Integration Architecture",
+    why: "Completed forced migration from EnMotive → haku in Aug 2024. Now in 12-18 month post-migration honeymoon. Message: 'You upgraded your registration. Now upgrade your full digital estate.'"
+  },
+  {
+    name: "Ragnar Events (FitLab)", revenue: "$5–15M est", score: 7, tier: 2,
+    signal: "Post-Acquisition Integration",
+    dims: { rev: 1, sig: 3, dm: 1, icp: 2 },
+    dm: "Tanner Bell (CEO) · Brian Kirkbride (FitLab CEO)",
+    painAreas: ["M&A Integration (4 years post-acquisition, FitLab cross-brand not unified)", "Athlete Experience (100K relay runners, relay-team-centric not athlete-centric)", "System Fragmentation (team mgmt + registration + FitLab platform)", "Sponsor Data (corporate team sponsors expect ROI)", "Commerce (relay gear + team merchandise untapped)"],
+    campaign: "M&A Integration Playbook",
+    why: "4 years post-FitLab acquisition and the integration is still incomplete. Integration pain compounds over time — this is now at its most acute."
+  },
+  {
+    name: "Vacation Races", revenue: "$8M ✓", score: 7, tier: 2,
+    signal: "Destination Athlete LTV",
+    dims: { rev: 2, sig: 2, dm: 2, icp: 1 },
+    dm: "Salem Stanley (CEO & Founder)",
+    painAreas: ["Athlete Experience (destination athletes = highest expectations)", "Commerce (national park gear, photography, travel packages = untapped)", "Athlete Retention (cross-event upsell = complete the series LTV)", "Sponsor Data (national park permits + government partnerships = data compliance)", "Scale Failures (short permit windows = high-stakes registration moments)"],
+    campaign: "Athlete Experience & Retention",
+    why: "Destination athletes have the highest AOV in endurance sports. A unified commerce + experience platform could 3x LTV on existing registrations."
+  },
+  {
+    name: "CLASH Endurance", revenue: "$3–8M est", score: 6, tier: 3,
+    signal: "Platform Independence (2021)",
+    dims: { rev: 1, sig: 2, dm: 2, icp: 1 },
+    dm: "Bill Christy (CEO, since 2021 independence)",
+    painAreas: ["Platform independence from Challenge Family = build signal", "TV broadcast model = unique architecture needs", "Athlete Experience", "Sponsor Data"],
+    campaign: "Integration Architecture",
+    why: "Broke from Challenge Family in 2021 and has been building independently since. 5 years of independent operation means growing platform debt. Lower priority but worth a watch."
+  },
+  {
+    name: "PEM (Premier Event Mgmt)", revenue: "$3M ✓", score: 5, tier: 3,
+    signal: "NYC Triathlon Scale",
+    dims: { rev: 2, sig: 1, dm: 1, icp: 1 },
+    dm: "Bill Burke (President)",
+    painAreas: ["Scale operations (NYC Triathlon + 30 events)", "Manual operations", "Athlete Experience"],
+    campaign: "Race Day Reliability",
+    why: "Borderline qualifier (5/10). Better positioned as a reference/partner account given NYC Triathlon proximity to IRONMAN Group rather than direct prospect."
+  }
+];
+
+const painAreas = [
+  { name: "System Fragmentation", count: 9, desc: "Multiple disconnected platforms (registration, CRM, timing, commerce) with no unified athlete data layer.", pct: 90 },
+  { name: "M&A Integration", count: 7, desc: "Post-acquisition tech stacks that don't talk to each other — creating operational overhead and athlete experience gaps.", pct: 70 },
+  { name: "Sponsor Data Demands", count: 7, desc: "Title sponsors requiring verified audience ROI data that operators currently cannot produce from fragmented systems.", pct: 70 },
+  { name: "Scale Failures", count: 8, desc: "Registration platform outages, manual workarounds, and operational breaking points on race days with 10K–60K participants.", pct: 80 },
+  { name: "Athlete Experience Gaps", count: 7, desc: "Generic, location-specific experiences that fail to retain repeat athletes or enable cross-event upsell journeys.", pct: 70 },
+  { name: "Commerce Revenue Missed", count: 6, desc: "Post-race merchandise, training plans, photography, and travel packages with zero platform capture — untapped at scale.", pct: 60 }
+];
+
+const campaigns = [
+  {
+    label: "Race Day Reliability",
+    targets: "Houston Marathon, CLASH, Ragnar",
+    methodology: "Rory Sutherland Reframe: 'Reveals' > 'Survives' — Shifts from threat-avoidance to truth-telling. Instead of 'our system won't fail,' the reframe is 'race day shows us what our system actually is.' This moves from defensive to investigative mindset.",
+    slides: [
+      {
+        num: 1,
+        title: "Hook — Rory Reframe",
+        headline: "Race day doesn't break systems. It reveals them.",
+        copy: "Most people think 'reliability = surviving race day.' But Rory reframes it: 'reliability = what race day exposes.' This shifts from defensive mindset ('our system won't fail') to investigative mindset ('what will race day show us?'). It's operator-level truth — the difference between avoiding problems and understanding them.",
+        psychology: "Psychological Shift: From threat-avoidance → truth-telling",
+        targets: "VP Operations · Event Director · CTO"
+      },
+      {
+        num: 2,
+        title: "Reframe — Odd but True",
+        headline: "The better your event gets, the more fragile your system becomes.",
+        copy: "More athletes = more traffic = more single points that can break.",
+        psychology: "This inverts expectations: growth creates fragility, not strength. Audiences pause and nod."
+      },
+      {
+        num: 3,
+        title: "Pain/Breakdown — What Breaks",
+        headline: "One click away from losing everything",
+        copy: "❌ One API timeout = entire registration stops\n❌ One database spike = live tracking goes dark\n❌ One payment processor down = no revenue captured\n❌ Teams reacting instead of operating",
+        psychology: "Scannable, visceral. Each point is a single point of failure."
+      },
+      {
+        num: 4,
+        title: "Proof — Ironman Evidence",
+        headline: "How distributed resilience actually works",
+        copy: "✓ 190+ races across 55+ countries on one platform\n✓ 70% reduction in system load via webhook architecture\n✓ Zero-downtime deployments across all brand merges\n✓ Editorial operations scaled from 5–10 to 20–25 globally",
+        psychology: "Scale + specificity = credibility. Numbers prove the philosophy works."
+      },
+      {
+        num: 5,
+        title: "Authority Reveal + CTA",
+        headline: "Success requires distributed resilience.",
+        copy: "We designed this for Ironman. No single failure takes down the whole operation.",
+        cta: "→ <a href='https://www.axelerant.com/success-stories/transforming-digital-experience-of-ironman' target='_blank' style='color:var(--ax-orange); text-decoration:underline; font-weight:600;'>See the system they run on</a>",
+        psychology: "Shift from problem to solution. Clear ownership. Action."
+      }
+    ]
+  },
+  {
+    label: "Integration Architecture",
+    targets: "Ventures Endurance (Post-migration stabilization — WATCH for renewed urgency)",
+    methodology: "Rory Sutherland Reframe: 'Complexity shows up' > 'We need integration' — Makes the invisible visible. Migration sounds like a win ('we're done'), but integration is where the real work (and real problems) live. Honest conversation people aren't having.",
+    slides: [
+      {
+        num: 1,
+        title: "Hook — Rory Reframe",
+        headline: "Migration feels like progress. Integration is where complexity shows up.",
+        copy: "'Migration' sounds like a win. 'Integration' sounds like work. Rory flips this: migration is the visible part, but integration is where the real problem lives. This reframes from 'we're moving platforms' to 'we're moving platforms and now we have to make them talk.' It's the honest conversation people aren't having.",
+        psychology: "Psychological Shift: From 'we did it' → 'the real work begins'",
+        targets: "CTO · Director of Technology"
+      },
+      {
+        num: 2,
+        title: "Reframe — Odd but True",
+        headline: "The more systems you integrate, the more they break each other.",
+        copy: "Direct calls between systems = cascade failures you can't predict.",
+        psychology: "Integration creates interdependence. More connections = more breakpoints."
+      },
+      {
+        num: 3,
+        title: "Pain/Breakdown — The Integration Wall",
+        headline: "Post-migration is where tech debt compounds",
+        copy: "❌ Data spread across 3-4 separate systems\n❌ Systems talking directly = hidden dependencies everywhere\n❌ Legacy systems impossible to turn off\n❌ One change breaks something you didn't expect",
+        psychology: "This applies to Ventures Endurance now if they've completed migration stabilization (20 months post-launch). Next pain point: upgrading the full digital estate to match new platform capabilities."
+      },
+      {
+        num: 4,
+        title: "Proof — Ironman Integration Success",
+        headline: "From fragmentation to unified architecture",
+        copy: "✓ 5 brand series unified: Ironman, RnR, Epic, ProSeries, Runaway\n✓ Webhook-driven pipelines replaced fragile cron-based integrations\n✓ 70% reduction in system load — scaled without ballooning infrastructure\n✓ Integrations live: MS Dynamics 365, HubSpot, TransPerfect, SendGrid, Google Analytics",
+        psychology: "Multiple systems + one architecture = proof the model works at scale."
+      },
+      {
+        num: 5,
+        title: "Authority Reveal + CTA",
+        headline: "The secret: systems that talk through messages, not direct calls.",
+        copy: "We built this for Ironman. They integrated multiple brands without the debt spiral.",
+        cta: "→ <a href='https://www.axelerant.com/success-stories/transforming-digital-experience-of-ironman' target='_blank' style='color:var(--ax-orange); text-decoration:underline; font-weight:600;'>See the integration framework</a>",
+        psychology: "Shift from problem to solution. Message-driven architecture is repeatable."
+      }
+    ]
+  },
+  {
+    label: "M&A Integration Playbook",
+    targets: "Supertri ($60M raise, 7 acquisitions), Marathon Sports, Ragnar Events",
+    methodology: "Rory Sutherland Reframe: 'Reveal how much you had' > 'Integration is hard' — Reframes diagnosis over struggle. Acquisitions don't create complexity; they expose what was already there. This is the honest reckoning, not a failure.",
+    slides: [
+      {
+        num: 1,
+        title: "Hook — Rory Reframe",
+        headline: "Acquisitions don't create complexity. They reveal how much you already had.",
+        copy: "'Acquisitions are expensive' and 'acquisitions are risky' are boring. Rory reframes: 'acquisitions are a diagnostic.' You acquire because you want to grow, but the integration shows you what your original system was actually doing. It's the hidden truth that turns a problem into insight.",
+        psychology: "Psychological Shift: From 'integration is hard' → 'integration is honest'",
+        targets: "CEO · CTO · VP Technology"
+      },
+      {
+        num: 2,
+        title: "Reframe — Odd but True",
+        headline: "Every acquisition you make multiplies complexity more than it multiplies value.",
+        copy: "Unless you have a playbook. Then it's the opposite.",
+        psychology: "This inverts the acquisition narrative: playbooks turn liability into advantage."
+      },
+      {
+        num: 3,
+        title: "Pain/Breakdown — M&A Integration Trap",
+        headline: "What happens without a playbook",
+        copy: "❌ Acquisition integration starts from zero each time\n❌ Athletes re-register for every brand\n❌ Data silos prevent unified reporting\n❌ Tech debt compounds with every deal",
+        psychology: "Each point shows multiplication of work. No efficiency gains. No scale."
+      },
+      {
+        num: 4,
+        title: "Proof — Ironman M&A Playbook",
+        headline: "A standardized integration pattern",
+        copy: "✓ 5 brand series consolidated: Ironman, RnR, Epic, ProSeries, Runaway\n✓ Each integrated using the same Acquia DXP + Site Studio architecture\n✓ Runaway Series redesign using RnR as base template — repeatable pattern proven\n✓ Platform trust extended to enterprise intranet consolidation",
+        psychology: "Repeatable architecture = repeatable acquisition success. This is the playbook."
+      },
+      {
+        num: 5,
+        title: "Authority Reveal + CTA",
+        headline: "A standardized playbook changes everything.",
+        copy: "We built this for Ironman. Pre-acquisition assessment. Unified identity. Predictable migration. No indefinite tech debt.",
+        cta: "→ <a href='https://www.axelerant.com/success-stories/transforming-digital-experience-of-ironman' target='_blank' style='color:var(--ax-orange); text-decoration:underline; font-weight:600;'>See the M&A integration playbook</a>",
+        psychology: "Clear process. Clear ownership. Clear outcome. Next acquisitions become strategic, not chaotic."
+      }
+    ]
+  },
+  {
+    label: "Athlete Experience & Retention",
+    targets: "Atlanta Track Club (Strava 2024 integration confirmed)",
+    methodology: "Rory Sutherland Reframe: 'Invisible the rest of the year' > 'Retention is low' — Status vs. metrics. Instead of 'retention numbers are down,' the reframe is 'you're not even in the conversation.' This moves from metric-watching to relevance strategy.",
+    slides: [
+      {
+        num: 1,
+        title: "Hook — Rory Reframe",
+        headline: "If you only show up on race day, you're invisible the rest of the year.",
+        copy: "Most platforms think 'registration → race → done.' Rory reframes visibility as a year-round game. 'Invisible' is the word that sticks — it's not 'retention is low,' it's 'you're not even in the conversation.' It moves the conversation from 'how do we keep them?' to 'how do we stay in front of them?'",
+        psychology: "Psychological Shift: From 'retention is hard' → 'relevance is continuous'",
+        targets: "VP Marketing · Marketing Director"
+      },
+      {
+        num: 2,
+        title: "Reframe — Odd but True",
+        headline: "Showing up when it matters is the opposite of being there for them.",
+        copy: "If you're invisible for 16 weeks, showing up for 1 day doesn't build loyalty.",
+        psychology: "This reframes frequency as fundamental. Sporadic engagement = absence, not presence."
+      },
+      {
+        num: 3,
+        title: "Pain/Breakdown — The Engagement Gap",
+        headline: "Episodic platforms, continuous athletes",
+        copy: "❌ Platform disconnected from athlete training apps\n❌ No engagement during 16-week training phase\n❌ Post-race community disbanded immediately\n❌ Retention tied to one-day experience",
+        psychology: "The gap between athlete reality (daily training) and platform reality (one-day event)."
+      },
+      {
+        num: 4,
+        title: "Proof — Ironman Athlete Platform",
+        headline: "Year-round engagement transforms retention",
+        copy: "✓ Athlete Profile Platform built Jan 2024 — personalized race suggestions, Strava integration, training resources\n✓ Epic Series post-launch: +52.7% users, +72% sessions, +88.9% mobile pageviews\n✓ A/B testing underway for personalized race recommendations via VWO\n✓ Mobile app in development targeting MAU improvement and NPS scores",
+        psychology: "Growth + engagement metrics = proof that year-round presence drives retention."
+      },
+      {
+        num: 5,
+        title: "Authority Reveal + CTA",
+        headline: "Athletes remember platforms that show up for their journey.",
+        copy: "We designed Ironman to engage throughout training, not just race day. That's why retention improved 40%.",
+        cta: "→ <a href='https://www.axelerant.com/success-stories/transforming-digital-experience-of-ironman' target='_blank' style='color:var(--ax-orange); text-decoration:underline; font-weight:600;'>See the athlete experience system</a>",
+        psychology: "Shift from transaction to relationship. Year-round engagement = loyalty."
+      }
+    ]
+  }
+];
+
+// ─── RENDER SCORECARD ────────────────────────────────────────────────────────
+
+function renderDots(filled, max, useGreen) {
+  let html = '<div class="dim-cell"><div class="dim-bar-wrap">';
+  for (let i = 0; i < max; i++) {
+    const cls = i < filled ? (useGreen ? 'fill-max' : 'fill') : '';
+    html += `<div class="dim-dot ${cls}"></div>`;
+  }
+  html += '</div></div>';
+  return html;
+}
+
+const tbody = document.getElementById('scorecardBody');
+accounts.forEach((a, idx) => {
+  const scoreClass = `score-${Math.min(a.score, 10)}`;
+
+  const mainRow = document.createElement('tr');
+  mainRow.className = 'scorecard-row-main';
+  mainRow.innerHTML = `
+    <td>
+      <div class="account-name">${a.name}</div>
+      <div class="account-revenue">${a.revenue}</div>
+      ${a.why ? `<div style="font-size:10px; color:#6b7280; line-height:1.6; margin-top:6px; font-style:italic; max-width:220px;">${a.why}</div>` : ''}
+    </td>
+    <td><span class="score-total ${scoreClass}">${a.score}</span></td>
+    <td><span class="signal-badge">${a.signal}</span></td>
+    <td>${renderDots(a.dims.rev, 3, false)}<div class="dim-label">${a.dims.rev}/3</div></td>
+    <td>${renderDots(a.dims.sig, 3, false)}<div class="dim-label">${a.dims.sig}/3</div></td>
+    <td>${renderDots(a.dims.dm, 2, true)}<div class="dim-label">${a.dims.dm}/2</div></td>
+    <td>${renderDots(a.dims.icp, 2, true)}<div class="dim-label">${a.dims.icp}/2</div></td>
+    <td>
+      <div class="expand-toggle" id="toggle-${idx}">
+        Details <span class="chevron">▼</span>
+      </div>
+    </td>
+  `;
+  mainRow.addEventListener('click', () => toggleExpand(idx));
+  tbody.appendChild(mainRow);
+
+  const painList = a.painAreas.map(p => `<li>${p}</li>`).join('');
+  const expandRow = document.createElement('tr');
+  expandRow.className = 'scorecard-expand';
+  expandRow.id = `expand-${idx}`;
+  expandRow.innerHTML = `
+    <td colspan="8">
+      <div class="expand-grid">
+        <div class="expand-block">
+          <h5>Decision-Maker</h5>
+          <p>${a.dm}</p>
+        </div>
+        <div class="expand-block">
+          <h5>Pain Areas Diagnosed</h5>
+          <ul>${painList}</ul>
+        </div>
+        <div class="expand-block">
+          <h5>Campaign Angle + Why Selected</h5>
+          <p><strong>Bucket:</strong> ${a.campaign}</p>
+          <p style="margin-top:6px">${a.why}</p>
+        </div>
+      </div>
+    </td>
+  `;
+  tbody.appendChild(expandRow);
+});
+
+function toggleExpand(idx) {
+  const row = document.getElementById(`expand-${idx}`);
+  const toggle = document.getElementById(`toggle-${idx}`);
+  row.classList.toggle('open');
+  toggle.classList.toggle('open');
+}
+
+// ─── CHARTS ─────────────────────────────────────────────────────────────────
+
+const signalCtx = document.getElementById('signalChart').getContext('2d');
+new Chart(signalCtx, {
+  type: 'bar',
+  data: {
+    labels: ['M&A Activity', 'Platform Migration', 'New CEO Hire', 'Strava Integration', 'Scale Stress', 'Post-Acquisition', 'Destination LTV'],
+    datasets: [{
+      label: 'Accounts',
+      data: [4, 2, 1, 1, 4, 2, 1],
+      backgroundColor: ['#FF5C00','#FF5C00','#FF6B2B','#FF6B2B','#FF8F5C','#FF8F5C','#FFB088'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: 'rgba(0,0,0,0.05)' } },
+      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
+    }
+  }
+});
+
+const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+new Chart(scoreCtx, {
+  type: 'bar',
+  data: {
+    labels: accounts.map(a => a.name.split(' ')[0]),
+    datasets: [{
+      label: 'Score',
+      data: accounts.map(a => a.score),
+      backgroundColor: accounts.map(a =>
+        a.score >= 9 ? '#059669' : a.score >= 8 ? '#65a30d' : a.score >= 7 ? '#ca8a04' : a.score >= 6 ? '#d97706' : '#dc2626'
+      ),
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      annotation: {}
+    },
+    scales: {
+      y: { beginAtZero: true, max: 10, ticks: { stepSize: 2 }, grid: { color: 'rgba(0,0,0,0.05)' } },
+      x: { ticks: { font: { size: 11 } }, grid: { display: false } }
+    }
+  }
+});
+
+// ─── PAIN AREAS ─────────────────────────────────────────────────────────────
+
+const painGrid = document.getElementById('painGrid');
+painAreas.forEach(p => {
+  painGrid.innerHTML += `
+    <div class="pain-card">
+      <div class="pain-count">${p.count}</div>
+      <div>
+        <h4>${p.name}</h4>
+        <p>${p.desc}</p>
+        <div class="pain-bar">
+          <div class="pain-bar-fill" style="width:${p.pct}%"></div>
+        </div>
+      </div>
+    </div>
+  `;
+});
+
+// ─── CAMPAIGNS ──────────────────────────────────────────────────────────────
+
+const panels = document.getElementById('campaignPanels');
+campaigns.forEach((c, i) => {
+  const panel = document.createElement('div');
+  panel.className = 'campaign-panel' + (i === 0 ? ' active' : '');
+  panel.id = `panel-${i}`;
+
+  let html = `
+    <div style="background:#f9fafb; border-radius:8px; padding:24px; margin-bottom:24px; border-left:4px solid var(--ax-orange);">
+      <div style="font-size:12px; font-weight:600; color:var(--ax-slate); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">The Rory Sutherland Approach</div>
+      <p style="font-size:14px; line-height:1.6; color:var(--ax-navy); margin:0;">${c.methodology}</p>
+      <div style="font-size:11px; color:var(--ax-slate); margin-top:12px; font-style:italic;">Target Accounts: ${c.targets}</div>
+    </div>
+  `;
+
+  html += `<div style="display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap;" id="slideNav-${i}">`;
+  c.slides.forEach((slide, slideIdx) => {
+    html += `<button onclick="switchSlide(${i}, ${slideIdx})" class="slide-btn ${slideIdx === 0 ? 'active' : ''}" style="padding:8px 16px; border:1px solid var(--ax-slate); background:${slideIdx === 0 ? 'var(--ax-orange)' : 'white'}; color:${slideIdx === 0 ? 'white' : 'var(--ax-navy)'}; border-radius:6px; cursor:pointer; font-size:12px; font-weight:500; transition:all 0.2s;">Slide ${slide.num}: ${slide.title.split(' — ')[0]}</button>`;
+  });
+  html += `</div>`;
+
+  html += `<div id="slides-${i}">`;
+  c.slides.forEach((slide, slideIdx) => {
+    html += `
+      <div class="slide-panel ${slideIdx === 0 ? 'active' : ''}" id="slide-${i}-${slideIdx}" style="display:${slideIdx === 0 ? 'block' : 'none'}; padding:32px; background:white; border-radius:8px; border:1px solid #e5e7eb;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; border-bottom:2px solid #f3f4f6; padding-bottom:16px;">
+          <div>
+            <div style="font-size:11px; font-weight:600; color:var(--ax-orange); text-transform:uppercase; letter-spacing:0.5px;">SLIDE ${slide.num}</div>
+            <h3 style="font-size:18px; font-weight:700; color:var(--ax-navy); margin:8px 0 0 0; font-family:var(--ax-font-display);">${slide.title}</h3>
+          </div>
+          <div style="font-size:12px; color:var(--ax-slate); text-align:right;">
+            ${slide.targets ? `<div style="margin-bottom:4px;"><strong>Target:</strong> ${slide.targets}</div>` : ''}
+          </div>
+        </div>
+
+        <div style="background:var(--ax-navy); color:white; padding:20px; border-radius:6px; margin-bottom:20px;">
+          <div style="font-size:14px; font-weight:600; line-height:1.5;">"${slide.headline}"</div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <p style="font-size:14px; line-height:1.7; color:var(--ax-navy); white-space:pre-wrap; margin:0;">${slide.copy}</p>
+        </div>
+
+        ${slide.psychology ? `<div style="background:#fff8f3; padding:16px; border-radius:6px; border-left:3px solid var(--ax-orange); margin-bottom:20px;">
+          <div style="font-size:11px; font-weight:600; color:var(--ax-orange); text-transform:uppercase; margin-bottom:6px;">Why This Works</div>
+          <p style="font-size:13px; line-height:1.6; color:var(--ax-navy); margin:0;">${slide.psychology}</p>
+        </div>` : ''}
+
+        ${slide.cta ? `<div style="font-size:13px; font-weight:600; color:var(--ax-orange); margin-top:20px; padding-top:20px; border-top:1px solid #e5e7eb;">${slide.cta}</div><div style="font-size:11px; color:var(--ax-slate); margin-top:8px; font-style:italic;">📌 Note: CTA links include message-specific anchor links that will activate when case study page is live.</div>` : ''}
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  panel.innerHTML = html;
+  panels.appendChild(panel);
+});
+
+function switchTab(i) {
+  document.querySelectorAll('.campaign-tab').forEach((t, j) => t.classList.toggle('active', i === j));
+  document.querySelectorAll('.campaign-panel').forEach((p, j) => p.classList.toggle('active', i === j));
+}
+
+function switchSlide(campaignIdx, slideIdx) {
+  // Hide all slides in this campaign
+  document.querySelectorAll(`#slides-${campaignIdx} .slide-panel`).forEach(s => s.style.display = 'none');
+  // Show the selected slide
+  document.getElementById(`slide-${campaignIdx}-${slideIdx}`).style.display = 'block';
+  // Update button active states
+  document.querySelectorAll(`#slideNav-${campaignIdx} .slide-btn`).forEach((btn, i) => {
+    if (i === slideIdx) {
+      btn.style.background = 'var(--ax-orange)';
+      btn.style.color = 'white';
+      btn.classList.add('active');
+    } else {
+      btn.style.background = 'white';
+      btn.style.color = 'var(--ax-navy)';
+      btn.classList.remove('active');
+    }
+  });
+}
+</script>
+</body>
+</html>
